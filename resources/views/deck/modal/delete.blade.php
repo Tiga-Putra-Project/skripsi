@@ -1,11 +1,11 @@
-<form method="POST" action="{{ route('admin.userlist.destroy',$deck->id_deck) }}">
+<form method="POST" action="{{ route('admin.deck.destroy',$deck->id_deck) }}">
 @csrf
 @method('DELETE')
-<div class="modal fade" id="modalDeleteUser{{$deck->id_deck}}" tabindex="-1" aria-labelledby="modalDeleteUser" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+<div class="modal fade" id="modalDeleteDeck{{$deck->id_deck}}" tabindex="-1" aria-labelledby="modalDeleteDeck" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
-            <h1 class="modal-title fs-5 text-center" id="modalDeleteUser">Delete User</h1>
+            <h1 class="modal-title fs-5 text-center" id="modalDeleteDeck">Delete Deck</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-center">

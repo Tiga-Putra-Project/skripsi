@@ -40,6 +40,8 @@ Route::group(['middleware' => 'user:admin'], function () {
     Route::controller(DeckController::class)->group(function () {
         Route::get('/deck', 'index')->name('admin.deck.index');
         Route::post('/deck', 'submit')->name('admin.deck.submit');
+        Route::delete('/deck/{id}', 'destroy')->name('admin.deck.destroy');
+        Route::put('/deck/{id}', 'edit')->name('admin.deck.edit');
     });
 });
 
