@@ -9,7 +9,7 @@
 
             <div class="mt-8 text-center">
                 <h4 class="mb-1 text-custom-500 dark:text-custom-500">Welcome Back !</h4>
-                <p class="text-slate-500 dark:text-zink-200">Sign in to continue to Starcode.</p>
+                <p class="text-slate-500 dark:text-zink-200">Sign in to continue </p>
             </div>
 
             <form action="{{ route('login.login') }}" class="mt-10" id="" method="POST">

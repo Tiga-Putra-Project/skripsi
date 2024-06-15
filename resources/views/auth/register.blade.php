@@ -8,8 +8,7 @@
             </a>
 
             <div class="mt-8 text-center">
-                <h4 class="mb-1 text-custom-500 dark:text-custom-500">Create your free account</h4>
-                <p class="text-slate-500 dark:text-zink-200">Get your free Starcode account now</p>
+                <h4 class="mb-1 text-custom-500 dark:text-custom-500">Create your account</h4>
             </div>
 
             <form action="{{ route('register.register') }}" class="mt-10" method="POST">
@@ -49,7 +48,7 @@
                         <p class="text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
-                <p class="italic text-15 text-slate-500 dark:text-zink-200">By registering you agree to the Starcode <a href="#!" class="underline">Terms of Use</a></p>
+                <p class="italic text-15 text-slate-500 dark:text-zink-200">By registering you agree to the<a href="#!" class="underline">Terms of Use</a></p>
                 <div class="mt-10">
                     <button type="submit" class="w-full text-white transition-all duration-200 ease-linear btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Register</button>
                 </div>
