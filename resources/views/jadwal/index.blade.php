@@ -1,6 +1,20 @@
 @extends('layouts.auth.master')
 
+@section('title')
+    List Jadwal
+@endsection
+
 @section('content')
+<script>
+    const date = new Date();
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    month = month.toString().padStart(2, '0');
+    let year = date.getFullYear();
+
+    let currentDate = `${day}-${month}-${year}`
+</script>
 <div class="group-data-[sidebar-size=lg]:ltr:md:ml-vertical-menu group-data-[sidebar-size=lg]:rtl:md:mr-vertical-menu group-data-[sidebar-size=md]:ltr:ml-vertical-menu-md group-data-[sidebar-size=md]:rtl:mr-vertical-menu-md group-data-[sidebar-size=sm]:ltr:ml-vertical-menu-sm group-data-[sidebar-size=sm]:rtl:mr-vertical-menu-sm pt-[calc(theme('spacing.header')_*_1)] pb-[calc(theme('spacing.header')_*_0.8)] px-4 group-data-[navbar=bordered]:pt-[calc(theme('spacing.header')_*_1.3)] group-data-[navbar=hidden]:pt-0 group-data-[layout=horizontal]:mx-auto group-data-[layout=horizontal]:max-w-screen-2xl group-data-[layout=horizontal]:px-0 group-data-[layout=horizontal]:group-data-[sidebar-size=lg]:ltr:md:ml-auto group-data-[layout=horizontal]:group-data-[sidebar-size=lg]:rtl:md:mr-auto group-data-[layout=horizontal]:md:pt-[calc(theme('spacing.header')_*_1.6)] group-data-[layout=horizontal]:px-3 group-data-[layout=horizontal]:group-data-[navbar=hidden]:pt-[calc(theme('spacing.header')_*_0.9)]">
     <div class="container-fluid group-data-[content=boxed]:max-w-boxed mx-auto">
         <div class="flex flex-col gap-2 py-4 md:flex-row md:items-center print:hidden">
@@ -33,59 +47,67 @@
                                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">
                                         No.
                                     </th>
+                                    <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Kapal</th>
                                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Jadwal Keberangatan</th>
                                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="dark:text-zink-200">
+                                @if($jadwals->isEmpty())
+                                    <tr>
+                                        <td colspan="4" class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 italic text-center">
+                                            tidak ada data.
+                                        </td>
+                                    </tr>
+                                @else
                                 @foreach($jadwals as $jadwal)
                                 <tr>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
                                         {{ $jadwals->firstItem() + $loop->index }}
                                     </td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
-                                        {{ $jadwal->user_unique_id }}
+                                        ({{ $jadwal->kapal->kode_kapal }}) {{ $jadwal->kapal->nama_kapal }}
                                     </td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">{{ $jadwal->jadwal_keberangkatan}}</td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
-                                        @if($user->role != 'admin')
-                                        <div class="relative dropdown">
+                                        <div class="relative dropdown select-none">
                                             <button id="orderAction{{ $jadwal->id_jadwal }}" data-bs-toggle="dropdown" class="flex items-center justify-center size-[30px] dropdown-toggle p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"><i data-lucide="more-horizontal" class="size-3"></i></button>
                                             <ul class="absolute z-50 hidden py-2 mt-1 ltr:text-left rtl:text-right list-none bg-white rounded-md shadow-md dropdown-menu min-w-[10rem] dark:bg-zink-600" aria-labelledby="orderAction{{ $jadwal->id_jadwal }}">
                                                 <li>
-                                                    <a class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200" href="apps-ecommerce-order-overview.html"><i data-lucide="eye" class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span class="align-middle">Overview</span></a>
+                                                    <span class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200 cursor-pointer" data-bs-toggle="modal" data-bs-target="#modalEditJadwal{{$jadwal->id_jadwal}}"><i data-lucide="pencil" class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span class="align-middle">Edit</span></span>
                                                 </li>
                                                 <li>
-                                                    <a class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200" href="#" data-bs-toggle="modal" data-bs-target="#modalDeleteJadwal{{$jadwal->id_jadwal}}"><i data-lucide="trash-2" class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i><span class="align-middle">Delete</span></a>
+                                                    <span class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200" data-bs-toggle="modal" data-bs-target="#modalDeleteJadwal{{$jadwal->id_jadwal}}"><i data-lucide="trash-2" class="inline-block size-3 ltr:mr-1 rtl:ml-1 cursor-pointer"></i><span class="align-middle">Delete</span></span>
                                                 </li>
                                             </ul>
                                         </div>
-                                        @endif
                                     </td>
                                 </tr>
+                                @include('jadwal.modal.edit')
                                 @include('jadwal.modal.delete')
                                 @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
                     <div class="flex flex-col items-center mt-5 md:flex-row">
                         <div class="mb-4 grow md:mb-0">
-                            <p class="text-slate-500 dark:text-zink-200">Showing <b> {{ $users->firstItem() }} - {{ $users->lastItem() }} </b> of <b>{{ $users->total() }}</b> Results</p>
+                            <p class="text-slate-500 dark:text-zink-200">Showing <b> {{ $jadwals->firstItem() }} - {{ $jadwals->lastItem() }} </b> of <b>{{ $jadwals->total() }}</b> Results</p>
                         </div>
                         <ul class="flex flex-wrap items-center gap-2 shrink-0">
                             <li>
-                                @if (!$users->onFirstPage())
-                                    <a href="{{ $users->previousPageUrl() }}{{ ($search) ? '&search='.$search : '' }}" class="inline-flex items-center justify-center bg-white dark:bg-zink-700 h-8 px-3 transition-all duration-150 ease-linear border rounded border-slate-200 dark:border-zink-500 text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-500 dark:[&.active]:text-custom-500 [&.active]:bg-custom-50 dark:[&.active]:bg-custom-500/10 [&.active]:border-custom-50 dark:[&.active]:border-custom-500/10 [&.active]:hover:text-custom-700 dark:[&.active]:hover:text-custom-700 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto"><i class="mr-1 size-4 rtl:rotate-180" data-lucide="chevron-left"></i> Prev</a>
+                                @if (!$jadwals->onFirstPage())
+                                    <a href="{{ $jadwals->previousPageUrl() }}{{ ($search) ? '&search='.$search : '' }}" class="inline-flex items-center justify-center bg-white dark:bg-zink-700 h-8 px-3 transition-all duration-150 ease-linear border rounded border-slate-200 dark:border-zink-500 text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-500 dark:[&.active]:text-custom-500 [&.active]:bg-custom-50 dark:[&.active]:bg-custom-500/10 [&.active]:border-custom-50 dark:[&.active]:border-custom-500/10 [&.active]:hover:text-custom-700 dark:[&.active]:hover:text-custom-700 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto"><i class="mr-1 size-4 rtl:rotate-180" data-lucide="chevron-left"></i> Prev</a>
                                 @endif
                             </li>
-                            @foreach (($users->lastPage() < 5) ? $users->getUrlRange(1, $users->lastPage()) : $users->getUrlRange(($users->currentPage() - 4 <= 0) ? 1 : $users->currentPage() - 3, ($users->currentPage() < 5) ? 5 : (($users->hasMorePages()) ? $users->currentPage() + 1 : $users->lastPage())) as $pages)
+                            @foreach (($jadwals->lastPage() < 5) ? $jadwals->getUrlRange(1, $jadwals->lastPage()) : $jadwals->getUrlRange(($jadwals->currentPage() - 4 <= 0) ? 1 : $jadwals->currentPage() - 3, ($jadwals->currentPage() < 5) ? 5 : (($jadwals->hasMorePages()) ? $jadwals->currentPage() + 1 : $jadwals->lastPage())) as $pages)
                                 <li>
-                                    <a href="{{ $pages }}{{ ($search) ? '&search='.$search : '' }}" class="inline-flex items-center justify-center bg-white dark:bg-zink-700 w-8 h-8 transition-all duration-150 ease-linear border rounded border-slate-200 dark:border-zink-500 text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-500 dark:[&.active]:text-custom-500 [&.active]:bg-custom-50 dark:[&.active]:bg-custom-500/10 [&.active]:border-custom-50 dark:[&.active]:border-custom-500/10 [&.active]:hover:text-custom-700 dark:[&.active]:hover:text-custom-700 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto {{ (substr($pages, (strpos($pages,'page=') + 5), strlen($pages)) == $users->currentPage()) ? 'active' : '' }}">{{ substr($pages, (strpos($pages,'page=') + 5), strlen($pages)) }}</a>
+                                    <a href="{{ $pages }}{{ ($search) ? '&search='.$search : '' }}" class="inline-flex items-center justify-center bg-white dark:bg-zink-700 w-8 h-8 transition-all duration-150 ease-linear border rounded border-slate-200 dark:border-zink-500 text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-500 dark:[&.active]:text-custom-500 [&.active]:bg-custom-50 dark:[&.active]:bg-custom-500/10 [&.active]:border-custom-50 dark:[&.active]:border-custom-500/10 [&.active]:hover:text-custom-700 dark:[&.active]:hover:text-custom-700 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto {{ (substr($pages, (strpos($pages,'page=') + 5), strlen($pages)) == $jadwals->currentPage()) ? 'active' : '' }}">{{ substr($pages, (strpos($pages,'page=') + 5), strlen($pages)) }}</a>
                                 </li>
                             @endforeach
                             <li>
-                                @if($users->currentPage() != $users->lastPage())
-                                    <a href="{{ $users->nextPageUrl() }}{{ ($search) ? '&search='.$search : '' }}" class="inline-flex items-center justify-center bg-white dark:bg-zink-700 h-8 px-3 transition-all duration-150 ease-linear border rounded border-slate-200 dark:border-zink-500 text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-500 dark:[&.active]:text-custom-500 [&.active]:bg-custom-50 dark:[&.active]:bg-custom-500/10 [&.active]:border-custom-50 dark:[&.active]:border-custom-500/10 [&.active]:hover:text-custom-700 dark:[&.active]:hover:text-custom-700 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto">Next <i class="ml-1 size-4 rtl:rotate-180" data-lucide="chevron-right"></i></a>
+                                @if($jadwals->currentPage() != $jadwals->lastPage())
+                                    <a href="{{ $jadwals->nextPageUrl() }}{{ ($search) ? '&search='.$search : '' }}" class="inline-flex items-center justify-center bg-white dark:bg-zink-700 h-8 px-3 transition-all duration-150 ease-linear border rounded border-slate-200 dark:border-zink-500 text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-500 dark:[&.active]:text-custom-500 [&.active]:bg-custom-50 dark:[&.active]:bg-custom-500/10 [&.active]:border-custom-50 dark:[&.active]:border-custom-500/10 [&.active]:hover:text-custom-700 dark:[&.active]:hover:text-custom-700 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto">Next <i class="ml-1 size-4 rtl:rotate-180" data-lucide="chevron-right"></i></a>
                                 @endif
                             </li>
                         </ul>
@@ -94,47 +116,37 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="tambahModalUser" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+        <div class="modal fade" id="addJadwal" tabindex="-1" aria-labelledby="tambahModalJadwal" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-center" id="tambahModalUser">Tambah User</h1>
+                    <h1 class="modal-title fs-5 text-center" id="tambahModalJadwal">Tambah Jadwal</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('admin.userlist.submit')}}" method="POST">
+                <form action="{{ route('admin.jadwal.submit')}}" method="POST">
                 <div class="modal-body">
                         @csrf
                         <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Username">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="alamat" class="form-label">Alamat</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                        </div>
-                        <div class="mb-3">
-                            <label for="confirm_password" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password">
-                        </div>
-                        <div class="mb-3">
-                            <label for="role" class="form-label">Role</label>
-                            <select class="form-select" id="role" name="role">
-                                <option value="admin">Admin</option>
-                                <option value="user">User</option>
+                            <label for="kapal_id" class="form-label">Kapal</label>
+                            <select class="form-select" id="kapal_id" name="kapal_id" data-placeholder="Pilih kapal yang anda inginkan" required>
+                                @if($kapals->isEmpty())
+                                    <option disabled>Tidak Ada Data Kapal.</option>
+                                @else
+                                    <option></option>
+                                    @foreach ($kapals as $kapal)
+                                        <option value="{{ $kapal->id_kapal }}">{{ $kapal->kode_kapal }} | {{ $kapal->nama_kapal }}</option>
+                                    @endforeach
+                                @endif
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="jadwal" class="form-label">Jadwal Keberangkatan</label>
+                            <input type="text" class="form-control" id="jadwal_keberangkatan" name="jadwal_keberangkatan" placeholder="Jadwal Keberangkatan" data-date-days-of-week-disabled="" required>
                         </div>
                     </div>
                 <div class="modal-footer">
                     <button type="button" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="text-white btn bg-lime-400 border-lime-400 hover:text-white hover:bg-lime-500 hover:border-lime-400 focus:text-white focus:bg-lime-500 focus:border-lime-500 focus:ring focus:ring-lime-500 active:text-white active:bg-lime-400 active:border-lime-400 active:ring active:ring-lime-400 dark:ring-custom-400/20">Add User</button>
+                    <button type="submit" class="text-white btn bg-lime-400 border-lime-400 hover:text-white hover:bg-lime-500 hover:border-lime-400 focus:text-white focus:bg-lime-500 focus:border-lime-500 focus:ring focus:ring-lime-500 active:text-white active:bg-lime-400 active:border-lime-400 active:ring active:ring-lime-400 dark:ring-custom-400/20">Tambah Jadwal</button>
                 </div>
                 </form>
                 </div>
@@ -147,6 +159,20 @@
 
 @section('js')
 <script>
+    $('#jadwal_keberangkatan').datepicker({
+        todayHighlight: true,
+        todayBtn: true,
+        daysOfWeekDisabled: [0,6],
+        startDate: currentDate,
+        language: 'id'
+    });
+
+    $("#kapal_id").select2({
+        theme: "bootstrap-5",
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        dropdownParent: $("#addJadwal")
+    });
     document.getElementById('search_input').addEventListener('keypress', function(e){
         if(e.key === 'Enter'){
             let link;

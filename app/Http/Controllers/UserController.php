@@ -70,7 +70,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
             'role' => 'user'
         ]);
-        $user->user_unique_id = 'TP' . sprintf('%04d', $user->id);
+        $user->user_unique_id = 'TP' . sprintf('%04d', $user->id_user);
         $user->save();
         toastr()->success('Akun Berhasil Dibuat');
         return redirect()->route('login.index');
