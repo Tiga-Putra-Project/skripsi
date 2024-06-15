@@ -35,14 +35,14 @@ class DeckController extends Controller
         ]);
         Deck::create($data);
         toastr()->success('Data Deck Behasil Ditambahkan');
-        return redirect()->route('admin.deck.index');
+        return redirect()->route('deck.index');
     }
 
     public function destroy($id)
     {
         Deck::destroy($id);
         toastr()->success('Data Deck Berhasil Dihapus');
-        return redirect()->route('admin.deck.index');
+        return redirect()->route('deck.index');
     }
 
     public function edit(Request $request, $id)
@@ -52,6 +52,6 @@ class DeckController extends Controller
         $deck->kelas = $request->kelas;
         $deck->save();
         toastr()->success('Data Deck Berhasil Diedit');
-        return redirect()->route('admin.deck.index');
+        return redirect()->route('deck.index');
     }
 }

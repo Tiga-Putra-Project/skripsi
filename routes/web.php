@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\TiketKapalController;
-use App\Http\Controllers\DeckController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DeckController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\KapalController;
+use App\Http\Controllers\TiketKapalController;
 
 Route::get('/', function () {
     return view('homepage.landing');
@@ -23,6 +24,8 @@ Route::get('/logout', [UserController::class, 'logout'])->name('login.logout')->
 Route::group(['middleware' => 'user'], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/tiket', [TiketKapalController::class, 'index'])->name('ticket');
+    Route::get('/deck', [DeckController::class, 'index'])->name('deck.index');
+    Route::get('/kapal', [KapalController::class, 'index'])->name('kapal.index');
 });
 
 // Admin
@@ -38,7 +41,6 @@ Route::group(['middleware' => 'user:admin'], function () {
 
     //deck
     Route::controller(DeckController::class)->group(function () {
-        Route::get('/deck', 'index')->name('admin.deck.index');
         Route::post('/deck', 'submit')->name('admin.deck.submit');
         Route::delete('/deck/{id}', 'destroy')->name('admin.deck.destroy');
         Route::put('/deck/{id}', 'edit')->name('admin.deck.edit');
