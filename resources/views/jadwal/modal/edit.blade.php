@@ -19,8 +19,12 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="jadwal" class="form-label">Jadwal Keberangkatan</label>
-                    <input type="text" class="form-control" id="jadwal_keberangkatan{{ $jadwal->id_jadwal }}" name="jadwal_keberangkatan" placeholder="Jadwal Keberangkatan" value="{{$jadwal->jadwal_keberangkatan}}" required>
+                    <label for="tanggal_keberangkatan{{ $jadwal->id_jadwal }}" class="form-label">Tanggal Keberangkatan</label>
+                    <input type="text" class="form-control" id="tanggal_keberangkatan{{ $jadwal->id_jadwal }}" name="tanggal_keberangkatan" placeholder="Tanggal Keberangkatan" value="{{$jadwal->tanggal_keberangkatan}}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="jam_keberangkatan" class="form-label">Jam Keberangkatan</label>
+                    <input type="time" class="form-control" id="jam_keberangkatan" name="jam_keberangkatan" value="{{ $jadwal->jam_keberangkatan }}" placeholder="Jam Keberangkatan" required>
                 </div>
             </div>
         <div class="modal-footer">
@@ -39,7 +43,7 @@
             dropdownParent: $(`#modalEditJadwal${id_jadwal}`)
         });
 
-        $(`#jadwal_keberangkatan${id_jadwal}`).datepicker({
+        $(`#tanggal_keberangkatan${id_jadwal}`).datepicker({
             todayHighlight: true,
             todayBtn: true,
             daysOfWeekDisabled: [0,6],

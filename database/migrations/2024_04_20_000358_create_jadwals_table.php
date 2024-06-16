@@ -14,7 +14,8 @@ return new class extends Migration {
         Schema::create('jadwals', function (Blueprint $table) {
             $table->id('id_jadwal');
             $table->foreignId('kapal_id')->references('id_kapal')->on('kapals')->onUpdate('cascade')->onDelete('restrict');
-            $table->string('jadwal_keberangkatan')->nullable();
+            $table->date('tanggal_keberangkatan');
+            $table->string('jam_keberangkatan');
             $table->timestamps();
         });
     }

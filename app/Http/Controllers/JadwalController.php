@@ -14,7 +14,8 @@ class JadwalController extends Controller
         if ($request->has('search')) {
             $search = $request->search;
             $jadwals = Jadwal::where(function ($query) use ($request) {
-                return $query->where('jadwal_keberangkatan', 'LIKE', '%' . $request->search . '%')
+                return $query->where('tanggal_keberangkatan', 'LIKE', '%' . $request->search . '%')
+                    ->orWhere('jam_keberangkatan', 'LIKE', '%' . $request->search . '%')
                     ->orWhereHas('kapal', function ($second_query) use ($request) {
                         return $second_query->where('nama_kapal', 'LIKE', '%' . $request->search . '%')
                             ->orWhere('kode_kapal', 'LIKE', '%' . $request->search . '%');
@@ -30,7 +31,8 @@ class JadwalController extends Controller
     public function submit(Request $request)
     {
         $data = $request->validate([
-            'jadwal_keberangkatan' => 'required',
+            'tanggal_keberangkatan' => 'required',
+            'jam_keberangkatan' => 'required',
             'kapal_id' => 'required',
         ]);
         Jadwal::create($data);

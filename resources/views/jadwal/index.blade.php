@@ -32,11 +32,13 @@
                         <div class="2xl:col-span-3 2xl:col-start-10">
                             <div class="flex gap-3">
                                 <div class="relative grow">
-                                    <input type="text" class="ltr:pl-8 rtl:pr-8 search form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Search for ..." autocomplete="off" id="search_input">
+                                    <input type="text" class="ltr:pl-8 rtl:pr-8 search form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Search for ..." autocomplete="off" id="search_input" value="{{$search}}">
                                     <i data-lucide="search" class="inline-block size-4 absolute ltr:left-2.5 rtl:right-2.5 top-2.5 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-600"></i>
                                 </div>
+                                @if(Auth::user()->hasRole('admin'))
                                 <button data-bs-toggle="modal" data-bs-target="#addJadwal" type="button" class="text-white btn bg-lime-400 border-lime-400 hover:text-white hover:bg-lime-500 hover:border-lime-400 focus:text-white focus:bg-lime-500 focus:border-lime-500 focus:ring focus:ring-lime-500 active:text-white active:bg-lime-400 active:border-lime-400 active:ring active:ring-lime-400 dark:ring-custom-400/20"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" class="lucide lucide-plus inline-block size-4"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> <span class="align-middle">Tambah jadwal</span></button>
                                 <button type="button" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20"><i class="align-baseline ltr:pr-1 rtl:pl-1 ri-download-2-line"></i> Export</button>
+                                @endif
                             </div>
                         </div><!--end col-->
                     </div><!--end grid-->
@@ -49,7 +51,9 @@
                                     </th>
                                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Kapal</th>
                                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Jadwal Keberangatan</th>
+                                    @if(Auth::user()->hasRole('admin'))
                                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Action</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody class="dark:text-zink-200">
@@ -68,7 +72,8 @@
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
                                         ({{ $jadwal->kapal->kode_kapal }}) {{ $jadwal->kapal->nama_kapal }}
                                     </td>
-                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">{{ $jadwal->jadwal_keberangkatan}}</td>
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">{{ $jadwal->tanggal_keberangkatan}} {{ $jadwal->jam_keberangkatan }}</td>
+                                    @if(Auth::user()->hasRole('admin'))
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
                                         <div class="relative dropdown select-none">
                                             <button id="orderAction{{ $jadwal->id_jadwal }}" data-bs-toggle="dropdown" class="flex items-center justify-center size-[30px] dropdown-toggle p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"><i data-lucide="more-horizontal" class="size-3"></i></button>
@@ -82,6 +87,7 @@
                                             </ul>
                                         </div>
                                     </td>
+                                    @endif
                                 </tr>
                                 @include('jadwal.modal.edit')
                                 @include('jadwal.modal.delete')
@@ -115,6 +121,7 @@
                 </div>
             </div>
         </div>
+        @if(Auth::user()->hasRole('admin'))
         <!-- Modal -->
         <div class="modal fade" id="addJadwal" tabindex="-1" aria-labelledby="tambahModalJadwal" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
             <div class="modal-dialog">
@@ -140,8 +147,12 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="jadwal" class="form-label">Jadwal Keberangkatan</label>
-                            <input type="text" class="form-control" id="jadwal_keberangkatan" name="jadwal_keberangkatan" placeholder="Jadwal Keberangkatan" data-date-days-of-week-disabled="" required>
+                            <label for="tanggal_keberangkatan" class="form-label">Tanggal Keberangkatan</label>
+                            <input type="text" class="form-control" id="tanggal_keberangkatan" name="tanggal_keberangkatan" placeholder="Tanggal Keberangkatan" data-date-days-of-week-disabled="" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="jam_keberangkatan" class="form-label">Jam Keberangkatan</label>
+                            <input type="time" class="form-control" id="jam_keberangkatan" name="jam_keberangkatan" placeholder="Jam Keberangkatan" required>
                         </div>
                     </div>
                 <div class="modal-footer">
@@ -152,6 +163,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 </div>
 
@@ -159,7 +171,7 @@
 
 @section('js')
 <script>
-    $('#jadwal_keberangkatan').datepicker({
+    $('#tanggal_keberangkatan').datepicker({
         todayHighlight: true,
         todayBtn: true,
         daysOfWeekDisabled: [0,6],
