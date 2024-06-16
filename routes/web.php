@@ -68,5 +68,5 @@ Route::group(['middleware' => 'user:admin'], function () {
 
 // User Routes Only
 Route::group(['middleware' => 'user:user'], function () {
-    //...
+     //...
 });

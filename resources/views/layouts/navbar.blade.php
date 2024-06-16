@@ -18,8 +18,8 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu m-0">
-                        <a href="destination.html" class="dropdown-item">Destination</a>
-                        <a href="tour.html" class="dropdown-item">Explore Tour</a>
+                        <a href="{{ route('') }}" class="dropdown-item">Pesan Tiket Kapal</a>
+                        <a href="{{ route('') }}" class="dropdown-item">Pesan Transportasi Penghubung</a>
                         <a href="booking.html" class="dropdown-item">Travel Booking</a>
                         <a href="gallery.html" class="dropdown-item">Our Gallery</a>
                         <a href="guides.html" class="dropdown-item">Travel Guides</a>

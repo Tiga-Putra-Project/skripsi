@@ -11,7 +11,7 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="carousel-item active">
-                    <img src="{{('assets/img/carousel-1.jpg') }}" class="img-fluid" alt="Image">
+                    <img src="{{('assets/images/bigship.jpg') }}" class="img-fluid" alt="Image">
                     <div class="carousel-caption">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Explore The World</h4>
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="{{('assets/img/carousel-2.jpg') }}" class="img-fluid" alt="Image">
+                    <img src="{{('assets/images/ferry.jpg') }}" class="img-fluid" alt="Image">
                     <div class="carousel-caption">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Explore The World</h4>
