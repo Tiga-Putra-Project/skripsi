@@ -5,7 +5,7 @@
     <title>Tiga Putra | @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta content="Tiga Putra Project" name="description">
-    <meta content="Fayakun Rachman R." name="author">
+    <meta content="Fayakun Nur R." name="author">
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ ('assets/images/favicon.ico') }}">
     <!-- Layout config Js -->

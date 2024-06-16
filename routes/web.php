@@ -22,7 +22,10 @@ Route::group(['middleware' => 'guest'], function () {
 
 // All Role Routes
 Route::group(['middleware' => 'user'], function () {
-    Route::get('/logout', [UserController::class, 'logout'])->name('login.logout')->middleware('user');
+    Route::get('/logout', [UserController::class, 'logout'])->name('login.logout');
+    Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
+    Route::post('/profile', [UserController::class, 'edit_profile'])->name('user.profile.edit');
+    Route::post('/profile/password', [UserController::class, 'change_password'])->name('user.profile.password');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/tiket', [TiketKapalController::class, 'index'])->name('ticket');
     Route::get('/deck', [DeckController::class, 'index'])->name('deck.index');
