@@ -7,6 +7,7 @@ use App\Models\Jam;
 use App\Models\User;
 use App\Models\Pelabuhan;
 use Illuminate\Database\Seeder;
+use Database\Seeders\KotaTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -129,5 +130,7 @@ class DatabaseSeeder extends Seeder
             'tempat_pelabuhan' => 'Sintete',
             'kode_pelabuhan' => 'SNE'
         ]);
+
+        $this->call(KotaTableSeeder::class);
     }
 }

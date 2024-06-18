@@ -134,9 +134,19 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        User::findOrFail($id)->delete();
-        toastr()->success('User Berhasil Dihapus');
-        return redirect()->back();
+        try {
+            User::findOrFail($id)->delete();
+            toastr()->success('User Berhasil Dihapus');
+            return redirect()->back();
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->errorInfo[1] === 19) {
+                $user = User::find($id);
+                toastr()->error('Data User Dengan Kode ' . $user->user_unique_id . ' Sedang Digunakan Pada Data Lain (Gagal Menghapus)');
+                return redirect()->route('admin.user.index');
+            } else {
+                return abort(404);
+            }
+        }
     }
 
     public function userListIndex(Request $request)
