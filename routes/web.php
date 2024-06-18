@@ -7,10 +7,17 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\KapalController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\TiketKapalController;
+use App\Http\Controllers\Landing\TiketController;
+use App\Http\Controllers\Landing\TravelController;
 
 Route::get('/', function () {
     return view('homepage.landing');
 })->name('homepage.landing');
+
+Route::get('/pesan-tiket', [TiketController::class, 'index'])->name('pesan-tiket.index');
+Route::get('/pesan-travel', [TravelController::class, 'index'])->name('pesan-travel.index');
+Route::get('/api/kapal', [KapalController::class, 'get_data'])->name('api.kapal');
+
 
 // Guests Routes (Belum Login)
 Route::group(['middleware' => 'guest'], function () {
@@ -68,5 +75,5 @@ Route::group(['middleware' => 'user:admin'], function () {
 
 // User Routes Only
 Route::group(['middleware' => 'user:user'], function () {
-     //...
+    //...
 });

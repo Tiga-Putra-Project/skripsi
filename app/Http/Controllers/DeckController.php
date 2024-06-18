@@ -40,9 +40,19 @@ class DeckController extends Controller
 
     public function destroy($id)
     {
-        Deck::destroy($id);
-        toastr()->success('Data Deck Berhasil Dihapus');
-        return redirect()->route('deck.index');
+        try {
+            Deck::destroy($id);
+            toastr()->success('Data Deck Berhasil Dihapus');
+            return redirect()->route('deck.index');
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->errorInfo[1] === 19) {
+                $deck = Deck::find($id);
+                toastr()->error('Data Deck ' . $deck->kelas . ' (' . $deck->kapal->kode_kapal . ') Sedang Digunakan Pada Data Lain (Gagal Menghapus)');
+                return redirect()->route('kapal.index');
+            } else {
+                return abort(404);
+            }
+        }
     }
 
     public function edit(Request $request, $id)

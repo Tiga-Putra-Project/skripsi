@@ -50,7 +50,10 @@
                                         No.
                                     </th>
                                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Kapal</th>
+                                    <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Kelas</th>
                                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Jadwal Keberangatan</th>
+                                    <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Jalur</th>
+                                    <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Jumlah Tiket</th>
                                     @if(Auth::user()->hasRole('admin'))
                                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Action</th>
                                     @endif
@@ -59,7 +62,7 @@
                             <tbody class="dark:text-zink-200">
                                 @if($jadwals->isEmpty())
                                     <tr>
-                                        <td colspan="4" class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 italic text-center">
+                                        <td colspan="5" class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 italic text-center">
                                             tidak ada data.
                                         </td>
                                     </tr>
@@ -72,7 +75,16 @@
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
                                         ({{ $jadwal->kapal->kode_kapal }}) {{ $jadwal->kapal->nama_kapal }}
                                     </td>
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
+                                        {{ $jadwal->deck->kelas }}
+                                    </td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">{{ $jadwal->tanggal_keberangkatan}} {{ $jadwal->jam_keberangkatan }}</td>
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
+                                        <p>{{ $jadwal->kotaAsal->tempat_pelabuhan }} <i data-lucide="move-right" class="inline"></i> {{ $jadwal->kotaTujuan->tempat_pelabuhan }}</p>
+                                    </td>
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
+                                        Tersedia: {{ $jadwal->jumlah_tiket }}/{{ $jadwal->jumlah_tiket }}
+                                    </td>
                                     @if(Auth::user()->hasRole('admin'))
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
                                         <div class="relative dropdown select-none">
@@ -131,7 +143,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('admin.jadwal.submit')}}" method="POST">
-                <div class="modal-body">
+                    <div class="modal-body">
                         @csrf
                         <div class="mb-3">
                             <label for="kapal_id" class="form-label">Kapal</label>
@@ -151,14 +163,46 @@
                             <input type="text" class="form-control" id="tanggal_keberangkatan" name="tanggal_keberangkatan" placeholder="Tanggal Keberangkatan" data-date-days-of-week-disabled="" required>
                         </div>
                         <div class="mb-3">
+                            <label for="jumlah_tiket" class="form-label">Jumlah Tiket</label>
+                            <input type="number" class="form-control" id="jumlah_tiket" name="jumlah_tiket" placeholder="Jumlah tiket yang dapat dipesan" min="1" max="1" required disabled>
+                        </div>
+                        <div class="mb-3" id="deck-container">
+                            <label for="deck_id" class="form-label">Kelas Kapal</label>
+                            <select class="form-select" id="deck_id" name="deck_id" data-placeholder="Pilih Kelas Kapal" required>
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
                             <label for="jam_keberangkatan" class="form-label">Jam Keberangkatan</label>
-                            <input type="time" class="form-control" id="jam_keberangkatan" name="jam_keberangkatan" placeholder="Jam Keberangkatan" required>
+                            <input type="time" class="form-control" id="jam_keberangkatan" name="jam_keberangkatan" placeholder="Jam Keberangkatan" onfocus="this.showPicker()" required>
+                        </div>
+                        <div class="mb-3" id="asal-container">
+                            <label for="asal" class="form-label">Asal</label>
+                            <select class="form-select" id="asal" name="pelabuhan_asal_id" data-placeholder="Pilih Pelabuhan Asal" required>
+                                <option></option>
+                                @foreach ($pelabuhans as $pelabuhan)
+                                    <option value="{{$pelabuhan->id}}">
+                                        {{$pelabuhan->nama_kota}}, {{$pelabuhan->nama_provinsi}}|{{$pelabuhan->kode_pelabuhan }} - {{$pelabuhan->tempat_pelabuhan}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3" id="tujuan-container">
+                            <label for="tujuan" class="form-label">Tujuan</label>
+                            <select class="form-select" id="tujuan" name="pelabuhan_tujuan_id" data-placeholder="Pilih Pelabuhan Tujuan" required>
+                                <option></option>
+                                @foreach ($pelabuhans as $pelabuhan)
+                                    <option value="{{$pelabuhan->id}}">
+                                        {{$pelabuhan->nama_kota}}, {{$pelabuhan->nama_provinsi}}|{{$pelabuhan->kode_pelabuhan }} - {{$pelabuhan->tempat_pelabuhan}}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                <div class="modal-footer">
-                    <button type="button" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="text-white btn bg-lime-400 border-lime-400 hover:text-white hover:bg-lime-500 hover:border-lime-400 focus:text-white focus:bg-lime-500 focus:border-lime-500 focus:ring focus:ring-lime-500 active:text-white active:bg-lime-400 active:border-lime-400 active:ring active:ring-lime-400 dark:ring-custom-400/20">Tambah Jadwal</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="text-white btn bg-lime-400 border-lime-400 hover:text-white hover:bg-lime-500 hover:border-lime-400 focus:text-white focus:bg-lime-500 focus:border-lime-500 focus:ring focus:ring-lime-500 active:text-white active:bg-lime-400 active:border-lime-400 active:ring active:ring-lime-400 dark:ring-custom-400/20">Tambah Jadwal</button>
+                    </div>
                 </form>
                 </div>
             </div>
@@ -174,7 +218,6 @@
     $('#tanggal_keberangkatan').datepicker({
         todayHighlight: true,
         todayBtn: true,
-        daysOfWeekDisabled: [0,6],
         startDate: currentDate,
         language: 'id'
     });
@@ -185,6 +228,131 @@
         placeholder: $(this).data('placeholder'),
         dropdownParent: $("#addJadwal")
     });
+
+    $("#kapal_id").on('change', function(){
+        $("#jumlah_tiket").val('');
+        $("#jumlah_tiket").attr('disabled', 'disabled');
+        $("#deck_id").html('').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            dropdownParent: $("#deck-container"),
+            data: []
+        });
+        $("#deck_id").prop('disabled', true);
+        $.ajax({
+            url: "{{ route('api.kapal') }}",
+            type: "GET",
+            data: {
+                id: this.value
+            },
+            success: function (data) {
+                $("#jumlah_tiket").val(data.kapal.kapasitas);
+                $("#jumlah_tiket").attr('max', data.kapal.kapasitas);
+                $("#jumlah_tiket").removeAttr('disabled');
+                if(data.deck.length > 0){
+                    data.deck.unshift({
+                        id: '',
+                        text: ''
+                    })
+                    $("#deck_id").html('').select2({
+                        theme: "bootstrap-5",
+                        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                        placeholder: $(this).data('placeholder'),
+                        dropdownParent: $("#deck-container"),
+                        data: data.deck
+                    });
+                    $('#deck_id').prop('disabled', false);
+                } else {
+                    toastr.info('tidak ada kelas untuk kode kapal ' + data.kapal.kode_kapal);
+                }
+            }
+        });
+    });
+
+    $("#deck_id").select2({
+        theme: "bootstrap-5",
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        dropdownParent: $("#addJadwal")
+    });
+
+    $('#deck_id').prop('disabled', true);
+
+    $('#asal').select2({
+        theme: "bootstrap-5",
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        dropdownParent: $("#asal-container")
+    });
+
+    $('#asal').on("select2:open", function () {
+        setTimeout(function () {
+            var liElements = $('#select2-asal-results li');
+            liElements.each(function () {
+                var text = this.innerText.split('|');
+                this.innerText = '';
+                var parentDiv = document.createElement('div');
+                var childDiv = document.createElement('div');
+                var childDiv2 = document.createElement('div');
+                parentDiv.className = 'row';
+                childDiv.className = 'col-md-12 font-bold';
+                childDiv2.className = 'col-md-12 text-sm';
+
+                childDiv.appendChild(document.createTextNode(text[0]));
+                childDiv2.appendChild(document.createTextNode(text[1]));
+                parentDiv.appendChild(childDiv);
+                parentDiv.appendChild(childDiv2);
+                this.appendChild(parentDiv);
+            });
+        }, 0);
+    });
+
+    $('#asal').on('change', function() {
+        setTimeout(function () {
+            var elements = $('#select2-asal-container');
+            var text = elements[0].innerText.split('|');
+            elements[0].innerText = `${text[0]} (${text[1]})`;
+        }, 0);
+    })
+
+    $('#tujuan').select2({
+        theme: "bootstrap-5",
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        dropdownParent: $("#tujuan-container")
+    });
+
+    $('#tujuan').on("select2:open", function () {
+        setTimeout(function () {
+            var liElements = $('#select2-tujuan-results li');
+            liElements.each(function () {
+                var text = this.innerText.split('|');
+                this.innerText = '';
+                var parentDiv = document.createElement('div');
+                var childDiv = document.createElement('div');
+                var childDiv2 = document.createElement('div');
+                parentDiv.className = 'row';
+                childDiv.className = 'col-md-12 font-bold';
+                childDiv2.className = 'col-md-12 text-sm';
+
+                childDiv.appendChild(document.createTextNode(text[0]));
+                childDiv2.appendChild(document.createTextNode(text[1]));
+                parentDiv.appendChild(childDiv);
+                parentDiv.appendChild(childDiv2);
+                this.appendChild(parentDiv);
+            });
+        }, 0);
+    });
+
+    $('#tujuan').on('change', function() {
+        setTimeout(function () {
+            var elements = $('#select2-tujuan-container');
+            var text = elements[0].innerText.split('|');
+            elements[0].innerText = `${text[0]} (${text[1]})`;
+        }, 0);
+    })
+
     document.getElementById('search_input').addEventListener('keypress', function(e){
         if(e.key === 'Enter'){
             let link;

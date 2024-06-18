@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Deck;
 use App\Models\Kapal;
+use Illuminate\Http\Request;
 
 class KapalController extends Controller
 {
@@ -61,5 +62,29 @@ class KapalController extends Controller
         $kapal->save();
         toastr()->success('Data Kapal Berhasil Diedit');
         return redirect()->route('kapal.index');
+    }
+
+    public function get_data(Request $request)
+    {
+        if ($request->has('id')) {
+            $kapal = Kapal::find($request->id);
+            $decks = Deck::where('kapal_id', $request->id)->get();
+            $kelas = collect([]);
+            if (!$decks->isEmpty()) {
+                foreach ($decks as $deck) {
+                    $kelas->push([
+                        'id' => $deck->id_deck,
+                        'text' => $deck->kelas,
+                    ]);
+                }
+            }
+            $data = [
+                'kapal' => $kapal,
+                'deck' => $kelas
+            ];
+            return response()->json($data);
+        } else {
+            return abort(404);
+        }
     }
 }
