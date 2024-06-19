@@ -113,7 +113,7 @@
                         <div class="col-12">
                             <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
                                 <div class="service-icon p-4">
-                                    <i class="fa fa-plane fa-4x text-primary"></i>
+                                    <i class="fa fa-ship fa-3x text-primary"></i>
                                 </div>
                                 <div class="service-content">
                                     <h5 class="text-center mb-4">Pesan Tiket Kapal</h5>
