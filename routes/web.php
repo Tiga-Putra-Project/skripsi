@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\KapalController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\TiketKapalController;
+use App\Http\Controllers\TransportasiController;
 use App\Http\Controllers\Landing\TiketController;
 use App\Http\Controllers\Landing\TravelController;
 
@@ -70,6 +71,14 @@ Route::group(['middleware' => 'user:admin'], function () {
         Route::post('/jadwal', 'submit')->name('admin.jadwal.submit');
         Route::delete('/jadwal/{id}', 'destroy')->name('admin.jadwal.destroy');
         Route::put('/jadwal/{id}', 'edit')->name('admin.jadwal.edit');
+    });
+
+    //transportasi
+    Route::controller(TransportasiController::class)->group(function () {
+        Route::get('/transportasi', 'index')->name('admin.transportasi.index');
+        Route::post('/transportasi', 'submit')->name('admin.transportasi.submit');
+        Route::delete('/transportasi/{id}', 'destroy')->name('admin.transportasi.destroy');
+        Route::put('/transportasi/{id}', 'edit')->name('admin.transportasi.edit');
     });
 });
 
