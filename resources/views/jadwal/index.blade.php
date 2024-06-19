@@ -54,6 +54,7 @@
                                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Jadwal Keberangatan</th>
                                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Jalur</th>
                                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Jumlah Tiket</th>
+                                    <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Harga</th>
                                     @if(Auth::user()->hasRole('admin'))
                                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Action</th>
                                     @endif
@@ -62,7 +63,7 @@
                             <tbody class="dark:text-zink-200">
                                 @if($jadwals->isEmpty())
                                     <tr>
-                                        <td colspan="5" class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 italic text-center">
+                                        <td colspan="7" class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 italic text-center">
                                             tidak ada data.
                                         </td>
                                     </tr>
@@ -84,6 +85,9 @@
                                     </td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
                                         Tersedia: {{ $jadwal->jumlah_tiket }}/{{ $jadwal->jumlah_tiket }}
+                                    </td>
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
+                                        Rp. {{number_format($jadwal->harga, 0, ',', '.')}}
                                     </td>
                                     @if(Auth::user()->hasRole('admin'))
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
@@ -158,6 +162,16 @@
                                 @endif
                             </select>
                         </div>
+                        <div class="mb-3" id="tipe_tiket-container">
+                            <label for="tipe_tiket" class="form-label">Tipe Tiket</label>
+                            <select class="form-select" id="tipe_tiket" name="tipe_tiket" data-placeholder="Pilih Tipe Tiket" required>
+                                    <option></option>
+                                    <option value="1">Pejalan Kaki</option>
+                                    <option value="2">Sepeda</option>
+                                    <option value="3">Sepeda Motor</option>
+                                    <option value="4">Mobil</option>
+                            </select>
+                        </div>
                         <div class="mb-3">
                             <label for="tanggal_keberangkatan" class="form-label">Tanggal Keberangkatan</label>
                             <input type="text" class="form-control" id="tanggal_keberangkatan" name="tanggal_keberangkatan" placeholder="Tanggal Keberangkatan" data-date-days-of-week-disabled="" required>
@@ -198,6 +212,10 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="mb-3">
+                            <label class="form-label">Harga Tiket</label>
+                            <input type="text" class="form-control" name="harga" id="currency-field" pattern="^\Rp\d{1,3}(.\d{3})?$" value="" data-type="currency" placeholder="Harga Tiket" required>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20" data-bs-dismiss="modal">Close</button>
@@ -220,6 +238,13 @@
         todayBtn: true,
         startDate: currentDate,
         language: 'id'
+    });
+
+    $("#tipe_tiket").select2({
+        theme: "bootstrap-5",
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        dropdownParent: $("#tipe_tiket-container")
     });
 
     $("#kapal_id").select2({
@@ -364,5 +389,38 @@
             window.location = link+'?search='+e.target.value;
         }
     });
+
+    $("input[data-type='currency']").on({
+        keyup: function() {
+            formatCurrency($(this));
+        },
+        blur: function() {
+            formatCurrency($(this), "blur");
+        }
+    });
+
+
+    function formatNumber(n) {
+        return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    }
+
+
+    function formatCurrency(input, blur) {
+        var input_val = input.val();
+        if (input_val === "") { return; }
+        var original_len = input_val.length;
+        var caret_pos = input.prop("selectionStart");
+        if (input_val.indexOf(",") >= 0) {
+            input_val = formatNumber(input_val);
+            input_val = "Rp. " + input_val;
+        } else {
+            input_val = formatNumber(input_val);
+            input_val = "Rp. " + input_val;
+        }
+        input.val(input_val);
+        var updated_len = input_val.length;
+        caret_pos = updated_len - original_len + caret_pos;
+        input[0].setSelectionRange(caret_pos, caret_pos);
+    }
 </script>
 @endsection

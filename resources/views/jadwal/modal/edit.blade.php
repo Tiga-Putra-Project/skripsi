@@ -7,6 +7,7 @@
         </div>
         <form action="{{ route('admin.jadwal.edit', $jadwal->id_jadwal)}}" method="POST">
             <div class="modal-body">
+                @method('PUT')
                 @csrf
                 <div class="mb-3" id="kapal-container{{$jadwal->id_jadwal}}">
                     <label for="kapal_id{{$jadwal->id_jadwal}}" class="form-label">Kapal</label>
@@ -21,13 +22,23 @@
                         @endif
                     </select>
                 </div>
+                <div class="mb-3" id="tipe_tiket-container{{$jadwal->id_jadwal}}">
+                    <label for="tipe_tiket" class="form-label">Tipe Tiket</label>
+                    <select class="form-select" id="tipe_tiket{{$jadwal->id_jadwal}}" name="tipe_tiket" data-placeholder="Pilih Tipe Tiket" required>
+                            <option></option>
+                            <option value="1" @if($jadwal->tipe_tiket == 1) selected @endif>Pejalan Kaki</option>
+                            <option value="2" @if($jadwal->tipe_tiket == 2) selected @endif>Sepeda</option>
+                            <option value="3" @if($jadwal->tipe_tiket == 3) selected @endif>Sepeda Motor</option>
+                            <option value="4" @if($jadwal->tipe_tiket == 4) selected @endif>Mobil</option>
+                    </select>
+                </div>
                 <div class="mb-3">
                     <label for="tanggal_keberangkatan{{$jadwal->id_jadwal}}" class="form-label">Tanggal Keberangkatan</label>
                     <input type="text" class="form-control" id="tanggal_keberangkatan{{$jadwal->id_jadwal}}" name="tanggal_keberangkatan" placeholder="Tanggal Keberangkatan" value="{{$jadwal->tanggal_keberangkatan}}" required>
                 </div>
                 <div class="mb-3">
                     <label for="jumlah_tiket{{$jadwal->id_jadwal}}" class="form-label">Jumlah Tiket</label>
-                    <input type="number" class="form-control" id="jumlah_tiket{{$jadwal->id_jadwal}}" name="jumlah_tiket" placeholder="Jumlah tiket yang dapat dipesan" min="1" max="1" value="{{$jadwal->jumlah_tiket}}" required>
+                    <input type="number" class="form-control" id="jumlah_tiket{{$jadwal->id_jadwal}}" name="jumlah_tiket" placeholder="Jumlah tiket yang dapat dipesan" min="1" max="{{$jadwal->kapal->kapasitas_penumpang}}" value="{{$jadwal->jumlah_tiket}}" required>
                 </div>
                 <div class="mb-3" id="deck-container{{$jadwal->id_jadwal}}">
                     <label for="deck_id{{$jadwal->id_jadwal}}" class="form-label">Kelas Kapal</label>
@@ -64,6 +75,10 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="mb-3">
+                    <label class="form-label">Harga Tiket</label>
+                    <input type="text" class="form-control" name="harga" id="currency-field" pattern="^\Rp\d{1,3}(.\d{3})?$" value="Rp. {{number_format($jadwal->harga, 0, ',', '.')}}" data-type="currency" placeholder="Harga Tiket" required>
+                </div>
             </div>
         <div class="modal-footer">
             <button type="button" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20" data-bs-dismiss="modal">Close</button>
@@ -79,6 +94,13 @@
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
             placeholder: $(this).data('placeholder'),
             dropdownParent: $(`#kapal-container${id_jadwal}`)
+        });
+
+        $(`#tipe_tiket${id_jadwal}`).select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            dropdownParent: $(`#tipe_tiket-container${id_jadwal}`)
         });
 
         $(`#kapal_id${id_jadwal}`).on('change', function(){
