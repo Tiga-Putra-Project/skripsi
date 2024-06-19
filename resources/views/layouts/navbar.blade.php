@@ -1,8 +1,8 @@
 
     <!-- Navbar & Hero Start -->
     <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-        <a href="" class="navbar-brand p-0">
-            <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Travela</h1>
+        <a href="{{ route('homepage.landing') }}" class="navbar-brand p-0">
+            <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Tiga Putra Travel</h1>
             <!-- <img src="img/logo.png" alt="Logo"> -->
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
