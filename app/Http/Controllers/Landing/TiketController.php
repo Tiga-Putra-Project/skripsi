@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Landing;
 
-use App\Http\Controllers\Controller;
+use App\Models\Pelabuhan;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TiketController extends Controller
 {
     public function index()
     {
-        return view('homepage.pages.pesan_tiket');
+        $pelabuhans = Pelabuhan::all();
+        return view('homepage.pages.pesan_tiket', compact('pelabuhans'));
     }
 }

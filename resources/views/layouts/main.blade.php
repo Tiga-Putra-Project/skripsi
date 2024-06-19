@@ -16,7 +16,9 @@
         <!-- Icon Font Stylesheet -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 
         <!-- Libraries Stylesheet -->
         <link href="{{ ('assets/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
@@ -150,8 +152,12 @@
 
 
             <!-- JavaScript Libraries -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+            <script src="{{ ('assets/js/bootstrap-datepicker.min.js') }}"></script>
+            <script src="{{ ('assets/js/bootstrap-datepicker.id.min.js') }}"></script>
+            <link rel="stylesheet" href="{{ ('assets/css/bootstrap-datepicker.standalone.min.css') }}">
             <script src="{{('assets/lib/easing/easing.min.js') }}"></script>
             <script src="{{('assets/lib/waypoints/waypoints.min.js') }}"></script>
             <script src="{{('assets/lib/owlcarousel/owl.carousel.min.js') }}"></script>
@@ -159,6 +165,7 @@
 
             <!-- Template Javascript -->
             <script src="{{('assets/js/main.js') }}"></script>
+            @yield('js')
         </body>
 
 </html>
