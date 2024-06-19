@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Jadwal;
 use App\Models\Kapal;
 use App\Models\Pelabuhan;
+use Illuminate\Support\Str;
 
 class JadwalController extends Controller
 {
@@ -52,13 +53,18 @@ class JadwalController extends Controller
             'jumlah_tiket' => 'required',
             'pelabuhan_asal_id' => 'required',
             'pelabuhan_tujuan_id' => 'required',
-            'deck_id' => 'required'
+            'deck_id' => 'required',
+            'tipe_tiket' => 'required',
+            'harga' => 'required'
         ]);
         if ($data->fails()) {
             toastr()->error('Data Jadwal Gagal Ditambahkan');
             return redirect()->route('jadwal.index')->withErrors($data)->withInput($request->all());
         }
-        Jadwal::create($data->validated());
+        $data_arr = $data->validated();
+        $data_arr['harga'] = Str::replace('Rp. ', '', $data_arr['harga']);
+        $data_arr['harga'] = Str::replace('.', '', $data_arr['harga']);
+        Jadwal::create($data_arr);
         toastr()->success('Data Jadwal Behasil Ditambahkan');
         return redirect()->route('jadwal.index');
     }
@@ -73,10 +79,19 @@ class JadwalController extends Controller
     public function edit(Request $request, $id)
     {
         $jadwal = Jadwal::findOrFail($id);
-        $jadwal->jadwal_keberangkatan = $request->jadwal_keberangkatan;
+        $jadwal->tanggal_keberangkatan = $request->tanggal_keberangkatan;
+        $jadwal->jam_keberangkatan = $request->jam_keberangkatan;
         $jadwal->kapal_id = $request->kapal_id;
+        $jadwal->jumlah_tiket = $request->jumlah_tiket;
+        $jadwal->pelabuhan_asal_id = $request->pelabuhan_asal_id;
+        $jadwal->pelabuhan_tujuan_id = $request->pelabuhan_tujuan_id;
+        $jadwal->deck_id = $request->deck_id;
+        $jadwal->tipe_tiket = $request->tipe_tiket;
+        $harga = Str::replace('Rp. ', '', $request->harga);
+        $harga = Str::replace('.', '', $harga);
+        $jadwal->harga = $harga;
         $jadwal->save();
-        toastr()->success('Data Jadwal Berhasil Diedit');
+        toastr()->success('Data Jadwal Berhasil Diubah');
         return redirect()->route('jadwal.index');
     }
 }

@@ -20,6 +20,8 @@ return new class extends Migration {
             $table->date('tanggal_keberangkatan');
             $table->string('jam_keberangkatan');
             $table->string('jumlah_tiket');
+            $table->tinyInteger('tipe_tiket')->comment('1 => "pejalan_kaki", 2 => "Sepeda", 3 => "Sepeda Motor", 4 => "Mobil"');
+            $table->integer('harga');
             $table->timestamps();
         });
     }
