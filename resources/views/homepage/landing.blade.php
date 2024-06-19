@@ -14,12 +14,10 @@
                     <img src="{{('assets/images/bigship.jpg') }}" class="img-fluid" alt="Image">
                     <div class="carousel-caption">
                         <div class="p-3" style="max-width: 900px;">
-                            <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Explore The World</h4>
-                            <h1 class="display-2 text-capitalize text-white mb-4">Let's The World Together!</h1>
-                            <p class="mb-5 fs-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            </p>
+                            <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Ingin Mencari Tiket Kapal Beserta Trasportasinya?</h4>
+                            <h1 class="display-2 text-capitalize text-white mb-4">Tiga Putra Travel Solusinya</h1>
                             <div class="d-flex align-items-center justify-content-center">
-                                <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">Discover Now</a>
+                                <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">Cari Sekarang</a>
                             </div>
                         </div>
                     </div>
@@ -28,12 +26,10 @@
                     <img src="{{('assets/images/ferry.jpg') }}" class="img-fluid" alt="Image">
                     <div class="carousel-caption">
                         <div class="p-3" style="max-width: 900px;">
-                            <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Explore The World</h4>
-                            <h1 class="display-2 text-capitalize text-white mb-4">Find Your Perfect Tour At Travel</h1>
-                            <p class="mb-5 fs-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            </p>
+                            <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Ingin Menggunakan Kapal Sebagai Transportasi?</h4>
+                            <h1 class="display-2 text-capitalize text-white mb-4">Cari Tiket kapal Anda Sekarang</h1>
                             <div class="d-flex align-items-center justify-content-center">
-                                <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">Discover Now</a>
+                                <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">Cari Sekarang</a>
                             </div>
                         </div>
                     </div>
@@ -42,12 +38,10 @@
                     <img src="{{('assets/img/carousel-3.jpg') }}" class="img-fluid" alt="Image">
                     <div class="carousel-caption">
                         <div class="p-3" style="max-width: 900px;">
-                            <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Explore The World</h4>
-                            <h1 class="display-2 text-capitalize text-white mb-4">You Like To Go?</h1>
-                            <p class="mb-5 fs-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            </p>
+                            <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Butuh Transportasi Untuk Ke Tempat Tujuan?</h4>
+                            <h1 class="display-2 text-capitalize text-white mb-4">Pesan Di Tiga Putra Travel</h1>
                             <div class="d-flex align-items-center justify-content-center">
-                                <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">Discover Now</a>
+                                <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">Cari Sekarang</a>
                             </div>
                         </div>
                     </div>
@@ -105,5 +99,62 @@
         </div>
     </div>
     <!-- About End -->
+
+     <!-- Services Start -->
+     <div class="container-fluid bg-light service py-5">
+        <div class="container py-5">
+            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <h5 class="section-title px-3"></h5>
+                <h1 class="mb-0">Layanan Kami</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
+                                <div class="service-icon p-4">
+                                    <i class="fa fa-plane fa-4x text-primary"></i>
+                                </div>
+                                <div class="service-content">
+                                    <h5 class="text-center mb-4">Pesan Tiket Kapal</h5>
+                                    <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
+                                    </p>
+                                    <br>
+                                    <div class="col-12">
+                                        <div class="text-center">
+                                            <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="{{ route('pesan-tiket.index') }}">Cari Tiket Kapal</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
+                                <div class="service-icon p-4">
+                                    <i class="fa fa-car fa-4x text-primary"></i>
+                                </div>
+                                <div class="service-content">
+                                    <h5 class="text-center mb-4">Pesan Travel Transportasi</h5>
+                                    <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
+                                    </p>
+                                    <br>
+                                    <div class="col-12">
+                                        <div class="text-center">
+                                            <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="{{ route('pesan-travel.index') }}">Cari Travel Transportasi</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Services End -->
 
 @endsection
