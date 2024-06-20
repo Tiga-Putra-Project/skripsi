@@ -14,6 +14,24 @@
     let year = date.getFullYear();
 
     let currentDate = `${day}-${month}-${year}`
+
+    function formatState (state) {
+        if (!state.id) {
+            return state.text;
+        }
+        var text = state.text.split('|');
+        var $state = $(
+            `<div class="row">
+                <div class="col-md-12" style="font-weight: bold">
+                    ${text[0]}
+                </div>
+                <div class="col-md-12" style="font-size: 12px">
+                    ${text[1]}
+                </div>
+            </div>`
+        );
+        return $state;
+    };
 </script>
 <div class="group-data-[sidebar-size=lg]:ltr:md:ml-vertical-menu group-data-[sidebar-size=lg]:rtl:md:mr-vertical-menu group-data-[sidebar-size=md]:ltr:ml-vertical-menu-md group-data-[sidebar-size=md]:rtl:mr-vertical-menu-md group-data-[sidebar-size=sm]:ltr:ml-vertical-menu-sm group-data-[sidebar-size=sm]:rtl:mr-vertical-menu-sm pt-[calc(theme('spacing.header')_*_1)] pb-[calc(theme('spacing.header')_*_0.8)] px-4 group-data-[navbar=bordered]:pt-[calc(theme('spacing.header')_*_1.3)] group-data-[navbar=hidden]:pt-0 group-data-[layout=horizontal]:mx-auto group-data-[layout=horizontal]:max-w-screen-2xl group-data-[layout=horizontal]:px-0 group-data-[layout=horizontal]:group-data-[sidebar-size=lg]:ltr:md:ml-auto group-data-[layout=horizontal]:group-data-[sidebar-size=lg]:rtl:md:mr-auto group-data-[layout=horizontal]:md:pt-[calc(theme('spacing.header')_*_1.6)] group-data-[layout=horizontal]:px-3 group-data-[layout=horizontal]:group-data-[navbar=hidden]:pt-[calc(theme('spacing.header')_*_0.9)]">
     <div class="container-fluid group-data-[content=boxed]:max-w-boxed mx-auto">
@@ -51,6 +69,7 @@
                                     </th>
                                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Kapal</th>
                                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Kelas</th>
+                                    <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Tipe Tiket</th>
                                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Jadwal Keberangatan</th>
                                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Jalur</th>
                                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-y border-slate-200 dark:border-zink-500">Jumlah Tiket</th>
@@ -78,6 +97,9 @@
                                     </td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
                                         {{ $jadwal->deck->kelas }}
+                                    </td>
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
+                                        {{ $jadwal->tipeTiket() }}
                                     </td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">{{ $jadwal->tanggal_keberangkatan}} {{ $jadwal->jam_keberangkatan }}</td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
@@ -308,29 +330,8 @@
         theme: "bootstrap-5",
         width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
         placeholder: $(this).data('placeholder'),
-        dropdownParent: $("#asal-container")
-    });
-
-    $('#asal').on("select2:open", function () {
-        setTimeout(function () {
-            var liElements = $('#select2-asal-results li');
-            liElements.each(function () {
-                var text = this.innerText.split('|');
-                this.innerText = '';
-                var parentDiv = document.createElement('div');
-                var childDiv = document.createElement('div');
-                var childDiv2 = document.createElement('div');
-                parentDiv.className = 'row';
-                childDiv.className = 'col-md-12 font-bold';
-                childDiv2.className = 'col-md-12 text-sm';
-
-                childDiv.appendChild(document.createTextNode(text[0]));
-                childDiv2.appendChild(document.createTextNode(text[1]));
-                parentDiv.appendChild(childDiv);
-                parentDiv.appendChild(childDiv2);
-                this.appendChild(parentDiv);
-            });
-        }, 0);
+        dropdownParent: $("#asal-container"),
+        templateResult: formatState
     });
 
     $('#asal').on('change', function() {
@@ -345,29 +346,8 @@
         theme: "bootstrap-5",
         width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
         placeholder: $(this).data('placeholder'),
-        dropdownParent: $("#tujuan-container")
-    });
-
-    $('#tujuan').on("select2:open", function () {
-        setTimeout(function () {
-            var liElements = $('#select2-tujuan-results li');
-            liElements.each(function () {
-                var text = this.innerText.split('|');
-                this.innerText = '';
-                var parentDiv = document.createElement('div');
-                var childDiv = document.createElement('div');
-                var childDiv2 = document.createElement('div');
-                parentDiv.className = 'row';
-                childDiv.className = 'col-md-12 font-bold';
-                childDiv2.className = 'col-md-12 text-sm';
-
-                childDiv.appendChild(document.createTextNode(text[0]));
-                childDiv2.appendChild(document.createTextNode(text[1]));
-                parentDiv.appendChild(childDiv);
-                parentDiv.appendChild(childDiv2);
-                this.appendChild(parentDiv);
-            });
-        }, 0);
+        dropdownParent: $("#tujuan-container"),
+        templateResult: formatState
     });
 
     $('#tujuan').on('change', function() {

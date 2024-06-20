@@ -94,4 +94,34 @@ class JadwalController extends Controller
         toastr()->success('Data Jadwal Berhasil Diubah');
         return redirect()->route('jadwal.index');
     }
+
+    public function get_data(Request $request)
+    {
+        if($request->pelabuhan_asal_id != 0 && $request->pelabuhan_tujuan_id != 0){
+            $jadwal = Jadwal::where(function ($query) use ($request) {
+                if($request->has('tanggal_keberangkatan')){
+                    $query->where('tanggal_keberangkatan', $request->tanggal_keberangkatan);
+                }
+                if($request->has('tipe_tiket')){
+                    $query->where('tipe_tiket', $request->tipe_tiket);
+                }
+                if($request->has('deck_id')){
+                    $query->where('deck_id', $request->deck_id);
+                }
+                return $query->where('pelabuhan_asal_id', $request->pelabuhan_asal_id)
+                    ->where('pelabuhan_tujuan_id', $request->pelabuhan_tujuan_id);
+            })->get();
+            if($jadwal->count() > 0){
+                foreach($jadwal as $item){
+                    $item->kelas_name = $item->deck->kelas;
+                    $item->nama_kapal = $item->kapal->nama_kapal;
+                    $item->kode_kapal = $item->kapal->kode_kapal;
+                    $item->harga = 'Rp. '.number_format($item->harga, 0, ',', '.');
+                }
+            }
+            return response()->json($jadwal);
+        } else {
+            return abort(404);
+        }
+    }
 }

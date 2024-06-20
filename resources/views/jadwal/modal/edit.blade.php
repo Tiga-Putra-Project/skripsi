@@ -155,29 +155,8 @@
             theme: "bootstrap-5",
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
             placeholder: $(this).data('placeholder'),
-            dropdownParent: $(`#asal-container${id_jadwal}`)
-        });
-
-        $(`#asal${id_jadwal}`).on("select2:open", function () {
-            setTimeout(function () {
-                var liElements = $(`#select2-asal${id_jadwal}-results li`);
-                liElements.each(function () {
-                    var text = this.innerText.split('|');
-                    this.innerText = '';
-                    var parentDiv = document.createElement('div');
-                    var childDiv = document.createElement('div');
-                    var childDiv2 = document.createElement('div');
-                    parentDiv.className = 'row';
-                    childDiv.className = 'col-md-12 font-bold';
-                    childDiv2.className = 'col-md-12 text-sm';
-
-                    childDiv.appendChild(document.createTextNode(text[0]));
-                    childDiv2.appendChild(document.createTextNode(text[1]));
-                    parentDiv.appendChild(childDiv);
-                    parentDiv.appendChild(childDiv2);
-                    this.appendChild(parentDiv);
-                });
-            }, 0);
+            dropdownParent: $(`#asal-container${id_jadwal}`),
+            templateResult: formatState
         });
 
         $(`#asal${id_jadwal}`).on('change', function() {
@@ -192,29 +171,8 @@
             theme: "bootstrap-5",
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
             placeholder: $(this).data('placeholder'),
-            dropdownParent: $(`#tujuan-container${id_jadwal}`)
-        });
-
-        $(`#tujuan${id_jadwal}`).on("select2:open", function () {
-            setTimeout(function () {
-                var liElements = $(`#select2-tujuan${id_jadwal}-results li`);
-                liElements.each(function () {
-                    var text = this.innerText.split('|');
-                    this.innerText = '';
-                    var parentDiv = document.createElement('div');
-                    var childDiv = document.createElement('div');
-                    var childDiv2 = document.createElement('div');
-                    parentDiv.className = 'row';
-                    childDiv.className = 'col-md-12 font-bold';
-                    childDiv2.className = 'col-md-12 text-sm';
-
-                    childDiv.appendChild(document.createTextNode(text[0]));
-                    childDiv2.appendChild(document.createTextNode(text[1]));
-                    parentDiv.appendChild(childDiv);
-                    parentDiv.appendChild(childDiv2);
-                    this.appendChild(parentDiv);
-                });
-            }, 0);
+            dropdownParent: $(`#tujuan-container${id_jadwal}`),
+            templateResult: formatState
         });
 
         $(`#tujuan${id_jadwal}`).on('change', function() {

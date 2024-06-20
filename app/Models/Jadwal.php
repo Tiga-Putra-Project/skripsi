@@ -34,4 +34,25 @@ class Jadwal extends Model
     {
         return $this->hasOne(Pelabuhan::class, 'id', 'pelabuhan_tujuan_id');
     }
+
+    public function tipeTiket()
+    {
+        switch($this->tipe_tiket){
+            case 1:
+                return 'Pejalan Kaki';
+                break;
+            case 2:
+                return 'Sepeda';
+                break;
+            case 3:
+                return 'Sepeda Motor';
+                break;
+            case 4:
+                return 'Mobil';
+                break;
+            default:
+                return 'Tidak Ada';
+                break;
+        }
+    }
 }
