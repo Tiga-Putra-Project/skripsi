@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="overflow-x-auto mb-4">
-                        <form action="{{ route('user.profile.edit') }}" method="POST">
+                        <form action="{{ route('user.profile.edit', [], false) }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="user_unique_id" class="form-label">User ID</label>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="overflow-x-auto">
-                        <form action="{{ route('user.profile.password') }}" method="POST">
+                        <form action="{{ route('user.profile.password', [], false) }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="old_password" class="form-label">Old Password</label>

@@ -126,7 +126,7 @@
                 <div class="modal-header">
                     <h1 class="modal-title fs-5 text-center" id="tambahModalDeck">Tambah Deck</h1>
                 </div>
-                <form action="{{ route('admin.deck.submit')}}" method="POST">
+                <form action="{{ route('admin.deck.submit', [], false)}}" method="POST">
                 <div class="modal-body">
                         @csrf
                         <div class="mb-3">

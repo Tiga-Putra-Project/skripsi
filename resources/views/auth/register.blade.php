@@ -16,7 +16,7 @@
                 <h4 class="mb-1 text-custom-500 dark:text-custom-500">Create your account</h4>
             </div>
 
-            <form action="{{ route('register.register') }}" class="mt-10" method="POST">
+            <form action="{{ route('register.register', [], false) }}" class="mt-10" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="fullname-field" class="inline-block mb-2 text-base font-medium">Full Name</label>
@@ -76,7 +76,7 @@
 
                 <div class="mt-10 text-center">
                     <p class="mb-0 text-slate-500 dark:text-zink-200">Already have an account ?
-                        <a href="{{ route('login.index') }}" class="font-semibold underline transition-all duration-150 ease-linear text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500">Login</a>
+                        <a href="{{ route('login.index', [], false) }}" class="font-semibold underline transition-all duration-150 ease-linear text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500">Login</a>
                     </p>
                 </div>
             </form>

@@ -119,7 +119,7 @@
                     <h1 class="modal-title fs-5 text-center" id="tambahModalUser">Tambah User</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('admin.userlist.submit')}}" method="POST">
+                <form action="{{ route('admin.userlist.submit', [], false)}}" method="POST">
                 <div class="modal-body">
                         @csrf
                         <div class="mb-3">
