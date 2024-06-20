@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('admin.deck.destroy',$deck->id_deck) }}">
+<form method="POST" action="{{ route('admin.deck.destroy',$deck->id_deck, false) }}">
 @csrf
 @method('DELETE')
 <div class="modal fade" id="modalDeleteDeck{{$deck->id_deck}}" tabindex="-1" aria-labelledby="modalDeleteDeck" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">

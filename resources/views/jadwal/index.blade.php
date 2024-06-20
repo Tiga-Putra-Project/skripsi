@@ -146,7 +146,7 @@
                     <h1 class="modal-title fs-5 text-center" id="tambahModalJadwal">Tambah Jadwal</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('admin.jadwal.submit')}}" method="POST">
+                <form action="{{ route('admin.jadwal.submit', [], false)}}" method="POST">
                     <div class="modal-body">
                         @csrf
                         <div class="mb-3">
@@ -266,7 +266,7 @@
         });
         $("#deck_id").prop('disabled', true);
         $.ajax({
-            url: "{{ route('api.kapal') }}",
+            url: "{{ route('api.kapal', [], false) }}",
             type: "GET",
             data: {
                 id: this.value

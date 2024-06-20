@@ -53,17 +53,17 @@
                 <div class="col-lg-4 text-center text-lg-end">
                     <div class="d-inline-flex align-items-center" style="height: 45px;">
                     @if(!Auth::check())
-                        <a href="{{ route('register.index') }}"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>Register</small></a>
-                        <a href="{{ route('login.index') }}"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
+                        <a href="{{ route('register.index', [], false) }}"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>Register</small></a>
+                        <a href="{{ route('login.index', [], false) }}"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
                     @else
                         <div class="dropdown">
                             <a href="#" class="dropdown-toggle text-light" data-bs-toggle="dropdown"><small><i class="fa fa-home me-2"></i> My Dashboard</small></a>
                             <div class="dropdown-menu rounded">
-                                <a href="{{ route('home') }}" class="dropdown-item"><i class="fas fa-user-alt me-2"></i> My Profile</a>
+                                <a href="{{ route('home', [], false) }}" class="dropdown-item"><i class="fas fa-user-alt me-2"></i> My Profile</a>
                                 <a href="#" class="dropdown-item"><i class="fas fa-comment-alt me-2"></i> Inbox</a>
                                 <a href="#" class="dropdown-item"><i class="fas fa-bell me-2"></i> Notifications</a>
                                 <a href="#" class="dropdown-item"><i class="fas fa-cog me-2"></i> Account Settings</a>
-                                <a href="{{ route('login.logout') }}" class="dropdown-item"><i class="fas fa-power-off me-2"></i> Log Out</a>
+                                <a href="{{ route('login.logout', [], false) }}" class="dropdown-item"><i class="fas fa-power-off me-2"></i> Log Out</a>
                             </div>
                         </div>
                     @endif
@@ -97,8 +97,8 @@
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white">Produk</h4>
-                            <a href="{{ route('pesan-tiket.index') }}"><i class="fas fa-angle-right me-2"></i> Tiket Kapal</a>
-                            <a href="{{ route('pesan-travel.index') }}"><i class="fas fa-angle-right me-2"></i> Pesan Travel Transportasi</a>
+                            <a href="{{ route('pesan-tiket.index', [], false) }}"><i class="fas fa-angle-right me-2"></i> Tiket Kapal</a>
+                            <a href="{{ route('pesan-travel.index', [], false) }}"><i class="fas fa-angle-right me-2"></i> Pesan Travel Transportasi</a>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-3">

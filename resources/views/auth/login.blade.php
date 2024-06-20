@@ -17,7 +17,7 @@
                 <p class="text-slate-500 dark:text-zink-200">Sign in to continue </p>
             </div>
 
-            <form action="{{ route('login.login') }}" class="mt-10" id="" method="POST">
+            <form action="{{ route('login.login', [], false) }}" class="mt-10" id="" method="POST">
                 @csrf
                 <div class="hidden px-4 py-3 mb-3 text-sm text-green-500 border border-green-200 rounded-md bg-green-50 dark:bg-green-400/20 dark:border-green-500/50" id="successAlert">
                     You have <b>successfully</b> signed in.
@@ -60,7 +60,7 @@
 
                 <div class="mt-10 text-center">
                     <p class="mb-0 text-slate-500 dark:text-zink-200">Don't have an account ?
-                        <a href="{{ route('register.index') }}" class="font-semibold underline transition-all duration-150 ease-linear text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500"> SignUp</a>
+                        <a href="{{ route('register.index', [], false) }}" class="font-semibold underline transition-all duration-150 ease-linear text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500"> SignUp</a>
                     </p>
                 </div>
             </form>

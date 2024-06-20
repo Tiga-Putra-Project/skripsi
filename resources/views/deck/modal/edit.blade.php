@@ -4,7 +4,7 @@
         <div class="modal-header">
             <h1 class="modal-title fs-5 text-center" id="editModalDeck{{ $deck->id_deck }}">Edit Deck</h1>
         </div>
-        <form action="{{ route('admin.deck.edit', $deck->id_deck)}}" method="POST">
+        <form action="{{ route('admin.deck.edit', $deck->id_deck, false)}}" method="POST">
         <div class="modal-body">
                 @csrf
                 @method('PUT')

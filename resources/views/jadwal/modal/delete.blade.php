@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('admin.jadwal.destroy',$jadwal->id_jadwal) }}">
+<form method="POST" action="{{ route('admin.jadwal.destroy',$jadwal->id_jadwal, false) }}">
 @csrf
 @method('DELETE')
 <div class="modal fade" id="modalDeleteJadwal{{$jadwal->id_jadwal}}" tabindex="-1" aria-labelledby="modalDeleteJadwal{{$jadwal->id_jadwal}}" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">

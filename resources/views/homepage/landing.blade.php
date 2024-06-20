@@ -122,7 +122,7 @@
                                     <br>
                                     <div class="col-12">
                                         <div class="text-center">
-                                            <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="{{ route('pesan-tiket.index') }}">Cari Tiket Kapal</a>
+                                            <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="{{ route('pesan-tiket.index', [], false) }}">Cari Tiket Kapal</a>
                                         </div>
                                     </div>
                                 </div>
@@ -144,7 +144,7 @@
                                     <br>
                                     <div class="col-12">
                                         <div class="text-center">
-                                            <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="{{ route('pesan-travel.index') }}">Cari Travel Transportasi</a>
+                                            <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="{{ route('pesan-travel.index', [], false) }}">Cari Travel Transportasi</a>
                                         </div>
                                     </div>
                                 </div>

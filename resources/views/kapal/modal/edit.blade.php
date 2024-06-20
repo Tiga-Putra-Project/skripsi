@@ -5,7 +5,7 @@
             <h1 class="modal-title fs-5 text-center" id="editModalKapal{{$kapal->id_kapal}}">Edit Kapal</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="{{ route('admin.kapal.edit', $kapal->id_kapal)}}" method="POST">
+        <form action="{{ route('admin.kapal.edit', $kapal->id_kapal, false)}}" method="POST">
         <div class="modal-body">
             @method('PUT')
             @csrf

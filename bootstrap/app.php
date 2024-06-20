@@ -3,7 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use App\Http\Middleware\userMiddleware;
+use App\Http\Middleware\UserMiddleware;
 use App\Http\Middleware\GuestMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -14,7 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'user' => userMiddleware::class,
+            'user' => UserMiddleware::class,
             'guest' => GuestMiddleware::class,
         ]);
     })

@@ -5,7 +5,7 @@
             <h1 class="modal-title fs-5 text-center" id="editModalJadwal{{$jadwal->id_jadwal}}">Edit Jadwal</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="{{ route('admin.jadwal.edit', $jadwal->id_jadwal)}}" method="POST">
+        <form action="{{ route('admin.jadwal.edit', $jadwal->id_jadwal, false)}}" method="POST">
             <div class="modal-body">
                 @method('PUT')
                 @csrf
@@ -115,7 +115,7 @@
             });
             $(`#deck_id${id_jadwal}`).prop('disabled', true);
             $.ajax({
-                url: "{{ route('api.kapal') }}",
+                url: "{{ route('api.kapal', [], false) }}",
                 type: "GET",
                 data: {
                     id: this.value

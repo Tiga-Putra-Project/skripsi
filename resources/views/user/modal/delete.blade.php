@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('admin.userlist.destroy',$user->user_id) }}">
+<form method="POST" action="{{ route('admin.userlist.destroy',$user->user_id,false) }}">
 @csrf
 @method('DELETE')
 <div class="modal fade" id="modalDeleteUser{{$user->user_id}}" tabindex="-1" aria-labelledby="modalDeleteUser" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
