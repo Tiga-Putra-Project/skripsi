@@ -2,49 +2,121 @@
 @section('main')
 
     {{-- tampilkan tiket kapal --}}
-    <div class="container-fluid booking py-5">
+    <div class="container-fluid bg-light service py-5">
         <div class="container py-5">
-            <div class="row g-5 align-items-center">
-                <div class="col-md-12">
-                    <h1 class="text-white mb-3">Cari Tiket yang Anda Inginkan</h1>
-                    <p class="text-white mb-4">Get On Your First Adventure Trip With Travela. Get More Deal Offers Here.</p>
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control bg-white border-0" id="name" placeholder="Your Name">
-                                    <label for="name">Asal</label>
+            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <h5 class="section-title px-3">Searvices</h5>
+                <h1 class="mb-0">Our Services</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
+                                <div class="service-content text-end">
+                                    <h5 class="mb-4">WorldWide Tours</h5>
+                                    <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
+                                    </p>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control bg-white border-0" id="email" placeholder="Your Email">
-                                    <label for="email">Tujuan</label>
+                                <div class="service-icon p-4">
+                                    <i class="fa fa-globe fa-4x text-primary"></i>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-floating date" id="date3" data-target-input="nearest">
-                                    <input type="text" class="form-control bg-white border-0" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
-                                    <label for="datetime">Date || Time</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control bg-white border-0" id="email" placeholder="Your Email">
-                                    <label for="email">Penumpang</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control bg-white border-0" placeholder="Special Request" id="message" style="height: 100px"></textarea>
-                                    <label for="message">Special Request</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary text-white w-100 py-3" type="submit">Cari Sekarang!</button>
                             </div>
                         </div>
-                    </form>
+                        <div class="col-12">
+                            <div class="service-content-inner d-flex align-items-center  bg-white border border-primary rounded p-4 pe-0">
+                                <div class="service-content text-end">
+                                    <h5 class="mb-4">Hotel Reservation</h5>
+                                    <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
+                                    </p>
+                                </div>
+                                <div class="service-icon p-4">
+                                    <i class="fa fa-hotel fa-4x text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
+                                <div class="service-content text-end">
+                                    <h5 class="mb-4">Travel Guides</h5>
+                                    <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
+                                    </p>
+                                </div>
+                                <div class="service-icon p-4">
+                                    <i class="fa fa-user fa-4x text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
+                                <div class="service-content text-end">
+                                    <h5 class="mb-4">Event Management</h5>
+                                    <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
+                                    </p>
+                                </div>
+                                <div class="service-icon p-4">
+                                    <i class="fa fa-cog fa-4x text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
+                                <div class="service-icon p-4">
+                                    <i class="fa fa-globe fa-4x text-primary"></i>
+                                </div>
+                                <div class="service-content">
+                                    <h5 class="mb-4">WorldWide Tours</h5>
+                                    <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
+                                <div class="service-icon p-4">
+                                    <i class="fa fa-hotel fa-4x text-primary"></i>
+                                </div>
+                                <div class="service-content">
+                                    <h5 class="mb-4">Hotel Reservation</h5>
+                                    <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
+                                <div class="service-icon p-4">
+                                    <i class="fa fa-user fa-4x text-primary"></i>
+                                </div>
+                                <div class="service-content">
+                                    <h5 class="mb-4">Travel Guides</h5>
+                                    <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
+                                <div class="service-icon p-4">
+                                    <i class="fa fa-cog fa-4x text-primary"></i>
+                                </div>
+                                <div class="service-content">
+                                    <h5 class="mb-4">Event Management</h5>
+                                    <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="text-center">
+                        <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Service More</a>
+                    </div>
                 </div>
             </div>
         </div>

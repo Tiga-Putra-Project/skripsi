@@ -65,7 +65,7 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-5">
                     <div class="h-100" style="border: 50px solid; border-color: transparent #13357B transparent #13357B;">
-                        <img src="img/about-img.jpg" class="img-fluid w-100 h-100" alt="">
+                        <img src="{{('/assets/images/ElaSepuh.jpeg') }}" class="img-fluid w-100 h-100" alt="">
                     </div>
                 </div>
                 <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
@@ -99,7 +99,6 @@
         </div>
     </div>
     <!-- About End -->
-
      <!-- Services Start -->
      <div class="container-fluid bg-light service py-5">
         <div class="container py-5">

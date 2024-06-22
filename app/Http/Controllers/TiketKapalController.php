@@ -14,8 +14,4 @@ class TiketKapalController extends Controller
         }
         return view('tiket_kapal.index', compact('tikets'));
     }
-
-    public function show(){
-        return view('result.show');
-    }
 }

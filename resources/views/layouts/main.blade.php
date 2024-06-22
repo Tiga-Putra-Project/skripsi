@@ -21,16 +21,16 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 
         <!-- Libraries Stylesheet -->
-        <link href="{{ ('assets/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-        <link href="{{ ('assets/lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
+        <link href="{{ ('/assets/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+        <link href="{{ ('/assets/lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
 
 
         <!-- Customized Bootstrap Stylesheet -->
-        <link href="{{('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{('/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
         <!-- Template Stylesheet -->
-        <link href="{{('assets/css/style.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{('/assets/css/style.css') }}" rel="stylesheet" type="text/css">
 
-        <link rel="stylesheet" href="{{ ('assets/css/toastr.min.css') }}">
+        <link rel="stylesheet" href="{{ ('/assets/css/toastr.min.css') }}">
     </head>
 
     <body>
@@ -155,17 +155,17 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-            <script src="{{ ('assets/js/toastr.min.js') }}"></script>
-            <script src="{{ ('assets/js/bootstrap-datepicker.min.js') }}"></script>
-            <script src="{{ ('assets/js/bootstrap-datepicker.id.min.js') }}"></script>
-            <link rel="stylesheet" href="{{ ('assets/css/bootstrap-datepicker.standalone.min.css') }}">
-            <script src="{{('assets/lib/easing/easing.min.js') }}"></script>
-            <script src="{{('assets/lib/waypoints/waypoints.min.js') }}"></script>
-            <script src="{{('assets/lib/owlcarousel/owl.carousel.min.js') }}"></script>
-            <script src="{{('assets/lib/lightbox/js/lightbox.min.js') }}"></script>
+            <script src="{{ ('/assets/js/toastr.min.js') }}"></script>
+            <script src="{{ ('/assets/js/bootstrap-datepicker.min.js') }}"></script>
+            <script src="{{ ('/assets/js/bootstrap-datepicker.id.min.js') }}"></script>
+            <link rel="stylesheet" href="{{ ('/assets/css/bootstrap-datepicker.standalone.min.css') }}">
+            <script src="{{('/assets/lib/easing/easing.min.js') }}"></script>
+            <script src="{{('/assets/lib/waypoints/waypoints.min.js') }}"></script>
+            <script src="{{('/assets/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+            <script src="{{('/assets/lib/lightbox/js/lightbox.min.js') }}"></script>
 
             <!-- Template Javascript -->
-            <script src="{{('assets/js/main.js') }}"></script>
+            <script src="{{('/assets/js/main.js') }}"></script>
             @yield('js')
         </body>
 

@@ -1184,6 +1184,13 @@
     transition: 0.5s;
 }
 
+.show {
+    background: linear-gradient(
+        rgba(72, 103, 165, 0.8),
+        rgba(19, 53, 123, 0.8)
+    );
+}
+
 .testimonial
     .testimonial-carousel
     .owl-item.center

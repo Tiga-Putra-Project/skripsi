@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->foreignId('pelabuhan_asal_id')->references('id')->on('pelabuhans')->onUpdate('cascade')->onDelete('restrict');
             $table->foreignId('pelabuhan_tujuan_id')->references('id')->on('pelabuhans')->onUpdate('cascade')->onDelete('restrict');
             $table->foreignId('deck_id')->references('id_deck')->on('decks')->onUpdate('cascade')->onDelete('restrict');
-            $table->date('tanggal_keberangkatan');
+            $table->string('tanggal_keberangkatan');
             $table->string('jam_keberangkatan');
             $table->string('jumlah_tiket');
             $table->tinyInteger('tipe_tiket')->comment('1 => "pejalan_kaki", 2 => "Sepeda", 3 => "Sepeda Motor", 4 => "Mobil"');

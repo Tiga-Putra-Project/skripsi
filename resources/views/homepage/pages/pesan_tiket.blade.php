@@ -21,6 +21,8 @@
                     </p>
                 </div>
                 <div class="col-lg-6">
+                    <br>
+                    <br>
                     <h1 class="text-white mb-3">Cari Tiket yang Anda Inginkan</h1>
                     <p class="text-white mb-4">Get On Your First Adventure Trip With Travela. Get More Deal Offers Here.</p>
                     <form>
@@ -68,18 +70,8 @@
                                 </div>
                             </div>
                             <div class="col-12">
-<<<<<<< HEAD
-                                <div class="form-floating">
-                                    <textarea class="form-control bg-white border-0" placeholder="Special Request" id="message" style="height: 100px"></textarea>
-                                    <label for="message">Special Request</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary text-white w-100 py-3" type="submit">Cari Sekarang
-                                </button>
-=======
+                                <a class="btn btn-primary text-white w-100 py-3" id="btn-cari" disabled href="{{ route('tiket.result.show_tiket', [], false) }}">Cari Sekarang!</a>
                                 <button class="btn btn-primary text-white w-100 py-3" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btn-cari" disabled>Cari Sekarang!</button>
->>>>>>> dec988bbfe6d015b508a9b6b71e0767ff0f10a68
                             </div>
                         </div>
                     </form>
@@ -109,7 +101,7 @@
 @endsection
 
 @section('js')
-    <script>    
+    <script>
         $('#tipe_tiket').select2({
             theme: "bootstrap-5",
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
@@ -117,7 +109,7 @@
             dropdownParent: $("#tipe_tiket-container")
         });
         $("#tipe_tiket").prop('disabled', true);
-        
+
         $('#kelas_id').select2({
             theme: "bootstrap-5",
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
@@ -125,7 +117,7 @@
             dropdownParent: $("#kelas_id-container")
         });
         $("#kelas_id").prop('disabled', true);
-        
+
         $('#pelabuhan_asal_id').select2({
             theme: "bootstrap-5",
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
