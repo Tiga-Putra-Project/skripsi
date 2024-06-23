@@ -7,7 +7,7 @@
             <div class="mx-auto text-center mb-5" style="max-width: 900px;">
                 <br>
                 <br>
-                <h1 class="mb-0">Our Services</h1>
+                <h1 class="mb-0">Pilihan Tiket Yang Tersedia</h1>
             </div>
             <div class="row g-4">
                 <div class="col-12">
@@ -370,7 +370,6 @@
                 }
             });
         });
-
         $('#kelas_id').on('change', function(e){
             $('#btn-cari').attr('disabled', true);
             $('#hasil-pencarian-container').html('');

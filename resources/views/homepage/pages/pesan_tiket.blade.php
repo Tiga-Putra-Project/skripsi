@@ -99,7 +99,6 @@
         </div>
     </div>
 @endsection
-
 @section('js')
     <script>
         $('#tipe_tiket').select2({
