@@ -474,7 +474,7 @@
                         $('#hasil-total-tiket').text(data.length);
                         data.forEach(function(value, index){
                             $('#hasil-pencarian-container').append(`
-                                    <div class="mb-2 mt-2">
+                                    <div class="mb-2 mt-2" onClick="getTicket(this)" data-id="${value.id}">
                                         <h4 class="mb-0">${value.nama_kapal} (${value.kode_kapal})</h4>
                                         <p class="mb-0">Kelas: ${value.kelas_name}</p>
                                         <p class="mb-0">Tanggal/Jam Berangkat: ${value.tanggal_keberangkatan} ${value.jam_keberangkatan} WITA</p>
@@ -487,6 +487,16 @@
                 }
             });
         });
+
+        function getTicket(e){
+            var id = $(e).data('id');
+            var form = $('<form action="{{route("tiket.transaksi", [], false)}}" method="post">' +
+                           '<input type="hidden" name="jadwal_id" value="' + id  + '" />' +
+                           '<input type="hidden" name="_token" value="{{ csrf_token() }}" />'+
+                        '</form>');
+            $('body').append(form);
+            form.submit();
+        }
 
         function formatState (state) {
             if (!state.id) {

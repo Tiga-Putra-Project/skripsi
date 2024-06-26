@@ -15,6 +15,6 @@
                 <a href="#service" class="nav-item nav-link">Services</a>
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
             </div>
-            <a href="" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Book Now</a>
+            <a href="{{route('pesan-tiket.index')}}" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Book Now</a>
         </div>
     </nav>

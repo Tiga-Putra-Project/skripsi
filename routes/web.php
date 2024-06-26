@@ -41,6 +41,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/deck', [DeckController::class, 'index'])->name('deck.index');
     Route::get('/kapal', [KapalController::class, 'index'])->name('kapal.index');
     Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal.index');
+    Route::post('/transaksi-tiket', [TiketKapalController::class, 'transaksi'])->name('tiket.transaksi');
 });
 
 // Admin Routes Only

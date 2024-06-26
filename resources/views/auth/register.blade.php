@@ -26,9 +26,9 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="fullname-field" class="inline-block mb-2 text-base font-medium">Username</label>
-                    <input type="text" name="name" id="username-field" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" value="{{ old('name') }}" placeholder="Enter name">
-                    @error('name')
+                    <label for="username-field" class="inline-block mb-2 text-base font-medium">Username</label>
+                    <input type="text" name="username" id="username-field" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" value="{{ old('name') }}" placeholder="Enter name">
+                    @error('username')
                         <p class="text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
