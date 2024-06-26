@@ -70,7 +70,8 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <a class="btn btn-primary text-white w-100 py-3" id="btn-cari" disabled href="{{ route('tiket.result.show_tiket', [], false) }}">Cari Sekarang!</a>
+                                {{--  --}}
+                                {{-- <a class="btn btn-primary text-white w-100 py-3" id="btn-cari" disabled href="{{ route('tiket.result.show_tiket', [], false) }}">Cari Sekarang!</a> --}}
                                 <button class="btn btn-primary text-white w-100 py-3" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btn-cari" disabled>Cari Sekarang!</button>
                             </div>
                         </div>
@@ -81,7 +82,6 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Hasil Pencarian Tiket</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <h5> Total: <span id="hasil-total-tiket"></span> Tiket</h5>

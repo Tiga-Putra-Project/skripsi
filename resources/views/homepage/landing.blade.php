@@ -58,8 +58,8 @@
         </div>
     </div>
     <!-- Carousel End -->
-
     <!-- About Start -->
+    <section id="about">
     <div class="container-fluid about py-5">
         <div class="container py-5">
             <div class="row g-5 align-items-center">
@@ -93,18 +93,19 @@
                             <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>24/7 Service</p>
                         </div>
                     </div>
-                    <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Read More</a>
                 </div>
             </div>
         </div>
     </div>
+    </section>
     <!-- About End -->
      <!-- Services Start -->
+     <section id="service">
      <div class="container-fluid bg-light service py-5">
         <div class="container py-5">
             <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                <h5 class="section-title px-3"></h5>
-                <h1 class="mb-0">Layanan Kami</h1>
+                <h5 class="section-title px-3">Layanan Kami</h5>
+                <h1 class="mb-0">Pesan Tiket Kapal & Travel</h1>
             </div>
             <div class="row g-4">
                 <div class="col-lg-6">
@@ -154,6 +155,7 @@
             </div>
         </div>
     </div>
+    </section>
     <!-- Services End -->
 
 @endsection

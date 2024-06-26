@@ -10,11 +10,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
-                <a href="index.html" class="nav-item nav-link active">Home</a>
+                <a href="{{ route('homepage.landing', [], false) }}" class="nav-item nav-link active">Home</a>
                 <a href="about.html" class="nav-item nav-link">About</a>
-                <a href="services.html" class="nav-item nav-link">Services</a>
-                <a href="packages.html" class="nav-item nav-link">Packages</a>
-                <a href="blog.html" class="nav-item nav-link">Blog</a>
+                <a href="#service" class="nav-item nav-link">Services</a>
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
             </div>
             <a href="" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Book Now</a>
