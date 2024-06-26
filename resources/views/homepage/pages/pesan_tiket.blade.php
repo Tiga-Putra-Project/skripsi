@@ -1,4 +1,21 @@
 @extends('layouts.main')
+@section('css')
+<style>
+    #hasil-pencarian-container div{
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+    #hasil-pencarian-container div:hover{
+        background: linear-gradient(rgba(19, 53, 123, 0.8), rgba(19, 53, 123, 0.8));
+        color: white;
+    }
+    #hasil-pencarian-container div:hover h4{
+        color:white;
+    }
+</style>
+
+@endsection
 @section('main')
 <script>
     const date = new Date();
@@ -98,7 +115,7 @@
 @endsection
 
 @section('js')
-    <script>    
+    <script>
         $('#tipe_tiket').select2({
             theme: "bootstrap-5",
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
@@ -106,7 +123,7 @@
             dropdownParent: $("#tipe_tiket-container")
         });
         $("#tipe_tiket").prop('disabled', true);
-        
+
         $('#kelas_id').select2({
             theme: "bootstrap-5",
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
@@ -114,7 +131,7 @@
             dropdownParent: $("#kelas_id-container")
         });
         $("#kelas_id").prop('disabled', true);
-        
+
         $('#pelabuhan_asal_id').select2({
             theme: "bootstrap-5",
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
