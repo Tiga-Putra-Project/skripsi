@@ -1,113 +1,29 @@
 @extends('layouts.main')
-@section('css')
-<style>
-    #hasil-pencarian-container div{
-        cursor: pointer;
-        padding: 5px 10px;
-        border-radius: 5px;
-    }
-    #hasil-pencarian-container div:hover{
-        background: linear-gradient(rgba(19, 53, 123, 0.8), rgba(19, 53, 123, 0.8));
-        color: white;
-    }
-    #hasil-pencarian-container div:hover h4{
-        color:white;
-    }
-</style>
-
-@endsection
 @section('main')
-<script>
-    const date = new Date();
 
-    let day = date.getDate() + 1;
-    let month = date.getMonth() + 1;
-    month = month.toString().padStart(2, '0');
-    let year = date.getFullYear();
-
-    let currentDate = `${day}-${month}-${year}`
-</script>
-    {{-- Pesan Tiket Kapal --}}
-    <div class="container-fluid booking py-5">
+    {{-- Tampilkan Tiket Kapal --}}
+    <div class="container-fluid show py-5">
         <div class="container py-5">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6">
-                    <h5 class="section-booking-title pe-3">Booking</h5>
-                    <h1 class="text-white mb-4">Booking Tiket Kapal</h1>
-                    <p class="text-white mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur maxime ullam esse fuga blanditiis accusantium pariatur quis sapiente, veniam doloribus praesentium? Repudiandae iste voluptatem fugiat doloribus quasi quo iure officia.
-                    </p>
-                </div>
-                <div class="col-lg-6">
-                    <br>
-                    <br>
-                    <h1 class="text-white mb-3">Cari Tiket yang Anda Inginkan</h1>
-                    <p class="text-white mb-4">Get On Your First Adventure Trip With Travela. Get More Deal Offers Here.</p>
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="form-group" id="pelabuhan_asal-container">
-                                    <label for="pelabuhan_asal_id" class="form-label text-white">Pelabuhan Asal</label>
-                                    <select class="form-control bg-white border-0" id="pelabuhan_asal_id" name="pelabuhan_asal_id" data-placeholder="Pelabuhan asal">
-                                        <option></option>
-                                        @foreach ($pelabuhans as $pelabuhan)
-                                            <option value="{{$pelabuhan->id}}">{{$pelabuhan->nama_provinsi}}, {{$pelabuhan->nama_kota}} | {{$pelabuhan->kode_pelabuhan}} - {{$pelabuhan->tempat_pelabuhan}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group" id="pelabuhan_tujuan-container">
-                                    <label for="pelabuhan_tujuan_id" class="form-label text-white">Pelabuhan Tujuan</label>
-                                    <select class="form-control bg-white border-0" id="pelabuhan_tujuan_id" name="pelabuhan_tujuan_id" data-placeholder="Pelabuhan tujuan">
-                                        <option></option>
-                                        @foreach ($pelabuhans as $pelabuhan)
-                                            <option value="{{$pelabuhan->id}}">{{$pelabuhan->nama_provinsi}}, {{$pelabuhan->nama_kota}} | {{$pelabuhan->kode_pelabuhan}} - {{$pelabuhan->tempat_pelabuhan}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group date">
-                                    <label class="form-label text-white" for="tanggal_keberangkatan">Tanggal Keberangkatan</label>
-                                    <input type="text" class="form-control rounded-0 border-0" id="tanggal_keberangkatan" name="tanggal_keberangkatan" placeholder="Tanggal Keberangkatan" data-date-days-of-week-disabled="" disabled required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group" id="tipe_tiket-container">
-                                    <label for="tipe_tiket" class="form-label text-white">Tipe Tiket</label>
-                                    <select class="form-control bg-white border-0" id="tipe_tiket" name="tipe_tiket" data-placeholder="Tipe Tiket" required>
-                                        <option></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group" id="kelas_id-container">
-                                    <label class="form-label text-white" for="kelas_id">Kelas</label>
-                                    <input type="text" class="form-control" id="kelas_id" name="kelas_id" data-placeholder="Pilih Kelas" required>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                {{--  --}}
-                                {{-- <a class="btn btn-primary text-white w-100 py-3" id="btn-cari" disabled href="{{ route('tiket.result.show_tiket', [], false) }}">Cari Sekarang!</a> --}}
-                                <button class="btn btn-primary text-white w-100 py-3" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btn-cari" disabled>Cari Sekarang!</button>
-                            </div>
+            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <br>
+                <br>
+                <h1 class="mb-0">Pilihan Tiket Yang Tersedia</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-12">
+                    <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
+                        <div class="service-icon p-4">
+                            <i class="fa fa-ship fa-3x text-primary"></i>
                         </div>
-                    </form>
-                </div>
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Hasil Pencarian Tiket</h1>
-                            </div>
-                            <div class="modal-body">
-                                <h5> Total: <span id="hasil-total-tiket"></span> Tiket</h5>
-                                <hr>
-                                <div id="hasil-pencarian-container">
+                        <div class="service-content">
+                            <h5 class="text-center mb-4">Pesan Tiket Kapal</h5>
+                            <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
+                            </p>
+                            <br>
+                            <div class="col-12">
+                                <div class="text-center">
+                                    <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="{{ route('pesan-tiket.index', [], false) }}">Cari Tiket Kapal</a>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -115,7 +31,9 @@
             </div>
         </div>
     </div>
+
 @endsection
+
 @section('js')
     <script>
         $('#tipe_tiket').select2({
@@ -452,7 +370,6 @@
                 }
             });
         });
-
         $('#kelas_id').on('change', function(e){
             $('#btn-cari').attr('disabled', true);
             $('#hasil-pencarian-container').html('');

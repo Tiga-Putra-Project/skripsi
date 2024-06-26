@@ -58,14 +58,14 @@
         </div>
     </div>
     <!-- Carousel End -->
-
     <!-- About Start -->
+    <section id="about">
     <div class="container-fluid about py-5">
         <div class="container py-5">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-5">
                     <div class="h-100" style="border: 50px solid; border-color: transparent #13357B transparent #13357B;">
-                        <img src="img/about-img.jpg" class="img-fluid w-100 h-100" alt="">
+                        <img src="{{('/assets/images/ElaSepuh.jpeg') }}" class="img-fluid w-100 h-100" alt="">
                     </div>
                 </div>
                 <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
@@ -93,19 +93,19 @@
                             <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>24/7 Service</p>
                         </div>
                     </div>
-                    <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Read More</a>
                 </div>
             </div>
         </div>
     </div>
+    </section>
     <!-- About End -->
-
      <!-- Services Start -->
+     <section id="service">
      <div class="container-fluid bg-light service py-5">
         <div class="container py-5">
             <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                <h5 class="section-title px-3"></h5>
-                <h1 class="mb-0">Layanan Kami</h1>
+                <h5 class="section-title px-3">Layanan Kami</h5>
+                <h1 class="mb-0">Pesan Tiket Kapal & Travel</h1>
             </div>
             <div class="row g-4">
                 <div class="col-lg-6">
@@ -155,6 +155,7 @@
             </div>
         </div>
     </div>
+    </section>
     <!-- Services End -->
 
 @endsection

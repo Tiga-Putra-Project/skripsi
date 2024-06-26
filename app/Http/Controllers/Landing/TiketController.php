@@ -13,4 +13,8 @@ class TiketController extends Controller
         $pelabuhans = Pelabuhan::all();
         return view('homepage.pages.pesan_tiket', compact('pelabuhans'));
     }
+
+    public function show(){
+        return view('result.show_tiket');
+    }
 }

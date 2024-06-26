@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::get('/pesan-tiket', [TiketController::class, 'index'])->name('pesan-tiket.index');
 Route::get('/pesan-travel', [TravelController::class, 'index'])->name('pesan-travel.index');
+Route::get('/result/show-tiket', [TiketController::class, 'show'])->name('tiket.result.show_tiket');
 Route::get('/api/kapal', [KapalController::class, 'get_data'])->name('api.kapal');
 Route::get('/api/jadwal', [JadwalController::class, 'get_data'])->name('api.jadwal');
 

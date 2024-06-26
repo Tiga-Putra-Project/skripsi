@@ -21,14 +21,15 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 
         <!-- Libraries Stylesheet -->
-        <link href="{{ ('assets/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-        <link href="{{ ('assets/lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
+        <link href="{{ ('/assets/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+        <link href="{{ ('/assets/lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
 
 
         <!-- Customized Bootstrap Stylesheet -->
-        <link href="{{('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{('/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
         <!-- Template Stylesheet -->
-        <link href="{{('assets/css/style.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{('/assets/css/style.css') }}" rel="stylesheet" type="text/css">
+
 
         <link rel="stylesheet" href="{{ ('assets/css/toastr.min.css') }}">
         @yield('css')
@@ -134,9 +135,9 @@
         <!-- Copyright Start -->
         <div class="container-fluid copyright text-body py-4">
             <div class="container">
-                <div class="row g-4 align-items-center">
-                    <div class="col-md-6 text-center text-md-end mb-md-0">
-                        <i class="fas fa-copyright me-2"></i><a class="text-white" href="#">Tiga Putra Travel</a>, All right reserved.
+                <div class="row g-4 align-items-left">
+                    <div class="col-md-6 text-center text-md-start mb-md-0">
+                        <i class="fas fa-copyright me-2"></i><a class="text-white" href="{{ route('homepage.landing') }}">2024 Tiga Putra Travel</a>, All right reserved.
                     </div>
                     <div class="col-md-6 text-center text-md-start">
                         <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
@@ -145,7 +146,6 @@
                     </div>
                     </div>
                 </div>
-
         </div>
         <!-- Copyright End -->
 
@@ -157,17 +157,17 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-            <script src="{{ ('assets/js/toastr.min.js') }}"></script>
-            <script src="{{ ('assets/js/bootstrap-datepicker.min.js') }}"></script>
-            <script src="{{ ('assets/js/bootstrap-datepicker.id.min.js') }}"></script>
-            <link rel="stylesheet" href="{{ ('assets/css/bootstrap-datepicker.standalone.min.css') }}">
-            <script src="{{('assets/lib/easing/easing.min.js') }}"></script>
-            <script src="{{('assets/lib/waypoints/waypoints.min.js') }}"></script>
-            <script src="{{('assets/lib/owlcarousel/owl.carousel.min.js') }}"></script>
-            <script src="{{('assets/lib/lightbox/js/lightbox.min.js') }}"></script>
+            <script src="{{ ('/assets/js/toastr.min.js') }}"></script>
+            <script src="{{ ('/assets/js/bootstrap-datepicker.min.js') }}"></script>
+            <script src="{{ ('/assets/js/bootstrap-datepicker.id.min.js') }}"></script>
+            <link rel="stylesheet" href="{{ ('/assets/css/bootstrap-datepicker.standalone.min.css') }}">
+            <script src="{{('/assets/lib/easing/easing.min.js') }}"></script>
+            <script src="{{('/assets/lib/waypoints/waypoints.min.js') }}"></script>
+            <script src="{{('/assets/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+            <script src="{{('/assets/lib/lightbox/js/lightbox.min.js') }}"></script>
 
             <!-- Template Javascript -->
-            <script src="{{('assets/js/main.js') }}"></script>
+            <script src="{{('/assets/js/main.js') }}"></script>
             @yield('js')
         </body>
 
