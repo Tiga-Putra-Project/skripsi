@@ -30,7 +30,9 @@
         <!-- Template Stylesheet -->
         <link href="{{('/assets/css/style.css') }}" rel="stylesheet" type="text/css">
 
-        <link rel="stylesheet" href="{{ ('/assets/css/toastr.min.css') }}">
+
+        <link rel="stylesheet" href="{{ ('assets/css/toastr.min.css') }}">
+        @yield('css')
     </head>
 
     <body>
