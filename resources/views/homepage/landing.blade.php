@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="{{('assets/img/carousel-3.jpg') }}" class="img-fluid" alt="Image">
+                    <img src="{{('assets/images/Car.jpg') }}" class="img-fluid" alt="Image">
                     <div class="carousel-caption">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Butuh Transportasi Untuk Ke Tempat Tujuan?</h4>
@@ -69,30 +69,9 @@
                     </div>
                 </div>
                 <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
-                    <h5 class="section-about-title pe-3">About Us</h5>
-                    <h1 class="mb-4">Welcome to <span class="text-primary">Travela</span></h1>
-                    <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, dolorum, doloribus sunt dicta, officia voluptatibus libero necessitatibus natus impedit quam ullam assumenda? Id atque iste consectetur. Commodi odit ab saepe!</p>
-                    <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium quos voluptatem suscipit neque enim, doloribus ipsum rem eos distinctio, dignissimos nisi saepe nulla? Libero numquam perferendis provident placeat molestiae quia?</p>
-                    <div class="row gy-2 gx-4 mb-4">
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>First Class Flights</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Handpicked Hotels</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>5 Star Accommodations</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Latest Model Vehicles</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>150 Premium City Tours</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>24/7 Service</p>
-                        </div>
-                    </div>
+                    <h1 class="mb-4">Welcome to <span class="text-primary">Tiga Putra Travel</span></h1>
+                    <p class="mb-4"> Web Tiga Putra Travel merupakan platform pemesanan tiket kapal laut dan travel online. Kami berkomitmen untuk
+                    memberikan pengalaman pemesanan tiket yang mudah, nyaman, dan aman bagi para pelanggan.</p>
                 </div>
             </div>
         </div>
@@ -157,5 +136,40 @@
     </div>
     </section>
     <!-- Services End -->
+    <section id="contact">
+    <!-- Contact Start -->
+    <div class="container-fluid contact bg-light py-5">
+        <div class="container py-5">
+            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <h5 class="section-title px-3">Contact Person</h5>
+                <h1 class="mb-0"></h1>
+            </div>
+            <div class="row text-center g-5 align-items-center">
+                <div class="col-md-4">
+                    <div class="contact-info p-4">
+                        <i class="fa fa-map-marker-alt fa-3x text-primary mb-3"></i>
+                        <h4 class="text-primary">Address</h4>
+                        <p class="mb-0">Jl. Kurnia Makmur Harapan Baru <br> Samarinda, Kalimantan Timur</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-info p-4">
+                        <i class="fa fa-phone-alt fa-3x text-primary mb-3"></i>
+                        <h4 class="text-primary">Mobile</h4>
+                        <p class="mb-0">+62 823 5380 9624</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-info p-4">
+                        <i class="fa fa-envelope-open fa-3x text-primary mb-3"></i>
+                        <h4 class="text-primary">Email</h4>
+                        <p class="mb-0">tigaputratravel@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Contact End -->
+    </section>
 @endsection

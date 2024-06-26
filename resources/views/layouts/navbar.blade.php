@@ -10,11 +10,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
-                <a href="{{ route('homepage.landing', [], false) }}" class="nav-item nav-link active">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="{{ route('homepage.landing', [], false) }}" class="nav-item nav-link">Home</a>
+                <a href="#about"  class="nav-item nav-link">About</a>
                 <a href="#service" class="nav-item nav-link">Services</a>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a href="#contact" class="nav-item nav-link">Contact</a>
             </div>
             <a href="{{route('pesan-tiket.index')}}" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Book Now</a>
+
         </div>
     </nav>
