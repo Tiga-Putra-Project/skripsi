@@ -10,6 +10,7 @@ use App\Http\Controllers\TiketKapalController;
 use App\Http\Controllers\TransportasiController;
 use App\Http\Controllers\Landing\TiketController;
 use App\Http\Controllers\Landing\TravelController;
+use App\Http\Controllers\TransaksiController;
 
 Route::get('/', function () {
     return view('homepage.landing');
@@ -20,6 +21,7 @@ Route::get('/pesan-travel', [TravelController::class, 'index'])->name('pesan-tra
 Route::get('/result/show-tiket', [TiketController::class, 'show'])->name('tiket.result.show_tiket');
 Route::get('/api/kapal', [KapalController::class, 'get_data'])->name('api.kapal');
 Route::get('/api/jadwal', [JadwalController::class, 'get_data'])->name('api.jadwal');
+Route::get('/api/total-tiket', [JadwalController::class, 'get_total_tiket'])->name('api.total_tiket');
 
 
 // Guests Routes (Belum Login)
@@ -42,6 +44,11 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/kapal', [KapalController::class, 'index'])->name('kapal.index');
     Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal.index');
     Route::post('/transaksi-tiket', [TiketKapalController::class, 'transaksi'])->name('tiket.transaksi');
+
+    Route::controller(TransaksiController::class)->group(function () {
+        Route::get('/transaksi', 'index')->name('transaksi.index');
+        Route::get('/api/transaksi/expired', 'expired')->name('api.transaksi.expired');
+    });
 });
 
 // Admin Routes Only

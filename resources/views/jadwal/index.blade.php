@@ -82,7 +82,7 @@
                             <tbody class="dark:text-zink-200">
                                 @if($jadwals->isEmpty())
                                     <tr>
-                                        <td colspan="7" class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 italic text-center">
+                                        <td colspan="9" class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 italic text-center">
                                             tidak ada data.
                                         </td>
                                     </tr>
