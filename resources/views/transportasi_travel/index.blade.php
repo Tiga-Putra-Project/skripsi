@@ -164,7 +164,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="kapasitas_penumpang" class="form-label">Jumlah Maksimal Penumpang</label>
-                            <input type="number" min="1" id="kapasitas_penumpang" class="form-control" placeholder="Plat Kendaraan" name="kapasitas_penumpang" required>
+                            <input type="number" min="1" id="kapasitas_penumpang" class="form-control" placeholder="Jumlah Maksimal Penumpang" name="kapasitas_penumpang" required>
                         </div>
                     </div>
                 <div class="modal-footer">

@@ -7,13 +7,16 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6">
                     <h5 class="section-booking-title pe-3">Booking</h5>
-                    <h1 class="text-white mb-4">Booking Travek Transportassi</h1>
-                    <p class="text-white mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur maxime ullam esse fuga blanditiis accusantium pariatur quis sapiente, veniam doloribus praesentium? Repudiandae iste voluptatem fugiat doloribus quasi quo iure officia.
-                    </p>
+                    <h1 class="text-white mb-4">Travel Kendaraan</h1>
+                    <br>
+                    <h6 class="text-white">1. Masukkan Asal Alamat Penjemputan Anda</h6>
+                    <h6 class="text-white">2. Masukkan Alamat Tujuan</h6>
+                    <h6 class="text-white">3. Masukkan Tanggal Keberangkatan</h6>
+                    <h6 class="text-white">4. Masukkan Jumlah Penumpang</h6>
+                    <h6 class="text-white">6. Klik Cari Sekarang!</h6>
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="text-white mb-3">Cari Tiket yang Anda Inginkan</h1>
-                    <p class="text-white mb-4">Get On Your First Adventure Trip With Travela. Get More Deal Offers Here.</p>
+                    <h1 class="text-white mb-3">Cari Travel Kendaraan</h1>
                     <form>
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -31,10 +34,10 @@
                             <div class="col-md-12">
                                 <div class="form-floating date" id="date3" data-target-input="nearest">
                                     <input type="text" class="form-control bg-white border-0" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
-                                    <label for="datetime">Date || Time</label>
+                                    <label for="datetime">Tanggal & Jam Keberangkatan</label>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-floating">
                                     <input type="email" class="form-control bg-white border-0" id="email" placeholder="Your Email">
                                     <label for="email">Penumpang</label>

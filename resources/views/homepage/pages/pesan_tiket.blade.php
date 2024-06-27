@@ -22,15 +22,19 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6">
                     <h5 class="section-booking-title pe-3">Booking</h5>
-                    <h1 class="text-white mb-4">Booking Tiket Kapal</h1>
-                    <p class="text-white mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur maxime ullam esse fuga blanditiis accusantium pariatur quis sapiente, veniam doloribus praesentium? Repudiandae iste voluptatem fugiat doloribus quasi quo iure officia.
-                    </p>
+                    <h1 class="text-white mb-4">Tiket Kapal</h1>
+                    <br>
+                    <h6 class="text-white">1. Masukkan Pelabuhan Asal Sesuai Alamat Anda</h6>
+                    <h6 class="text-white">2. Masukkan Pelabuhan Tujuan Anda</h6>
+                    <h6 class="text-white">3. Masukkan Tanggal Keberangkatan</h6>
+                    <h6 class="text-white">4. Masukkan Tipe atau Kategori Tiket</h6>
+                    <h6 class="text-white">5. Masukkan Kelas pada Deck Kapal</h6>
+                    <h6 class="text-white">6. Klik Cari Sekarang!</h6>
                 </div>
                 <div class="col-lg-6">
                     <br>
                     <br>
-                    <h1 class="text-white mb-3">Cari Tiket yang Anda Inginkan</h1>
-                    <p class="text-white mb-4">Get On Your First Adventure Trip With Travela. Get More Deal Offers Here.</p>
+                    <h1 class="text-white mb-3 text-center">Cari Tiket Kapal</h1>
                     <form>
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -76,8 +80,6 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                {{--  --}}
-                                {{-- <a class="btn btn-primary text-white w-100 py-3" id="btn-cari" disabled href="{{ route('tiket.result.show_tiket', [], false) }}">Cari Sekarang!</a> --}}
                                 <button class="btn btn-primary text-white w-100 py-3" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btn-cari" disabled>Cari Sekarang!</button>
                             </div>
                         </div>
@@ -483,35 +485,6 @@
                 }
             });
         });
-
-        function checkAvailableTiket(e){
-            $('#spinner').addClass('show');
-            $('.btn-pesan').each(function(){
-                var id_tiket_pesan = $(this).data('id');
-                $.ajax({
-                    url: "{{ route('api.total_tiket', [], false) }}",
-                    type: "GET",
-                    data: {
-                        'jadwal_id': id_tiket_pesan,
-                    },
-                    success: function (data) {
-                        $('#spinner').removeClass('show');
-                        if(parseInt($(e).val()) > parseInt(data)){
-                            if(!$(`#btn-pesan-${id_tiket_pesan}`).prop('disabled')){
-                                $(`#btn-pesan-${id_tiket_pesan}`).removeClass('btn-primary').addClass('btn-danger').text(`Stok Habis, Sisa: ${data}`);
-                                $(`#btn-pesan-${id_tiket_pesan}`).prop('disabled', true).removeAttr('onClick');
-                            }
-                        } else {
-                            if($(`#btn-pesan-${id_tiket_pesan}`).hasClass('btn-danger')){
-                                $(`#btn-pesan-${id_tiket_pesan}`).removeClass('btn-danger').addClass('btn-primary').text('Pesan Sekarang');
-                                $(`#btn-pesan-${id_tiket_pesan}`).prop('disabled', false).attr('onClick', 'getTicket(this)');
-                            }
-                        }
-                    }
-                });
-            });
-
-        }
 
         function getTicket(e){
             var id = $(e).data('id');
