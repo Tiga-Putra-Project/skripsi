@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tiket_Kapal extends Model
 {
-    protected $guarded=[];
+    protected $guarded = [];
     use HasFactory;
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jadwal;
+use App\Models\Transaksi;
 use App\Models\Tiket_Kapal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +26,20 @@ class TiketKapalController extends Controller
             return redirect()->route('login.index');
         }
 
-        dd(Auth::user()->user_id);
+        Transaksi::create([
+            'jadwal_id' => $request->jadwal_id,
+            'user_id' => $request->user()->user_id,
+            'jumlah_tiket' => $request->jumlah_tiket,
+            'tanggal_expired' => date("Y-m-d H:i:s", strtotime('+2 hours')),
+            'status' => 1
+        ]);
+
+        if ($request->user()->hasRole('admin')) {
+            $transaksis = Transaksi::orderBy('created_at', 'desc')->paginate(5);
+        } else {
+            $transaksis = Transaksi::where('user_id', $request->user()->user_id)->orderBy('created_at', 'desc')->paginate(5);
+        }
+        $search = '';
+        return redirect()->route('transaksi.index', compact('transaksis', 'search'));
     }
 }

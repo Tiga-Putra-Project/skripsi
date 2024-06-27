@@ -1,18 +1,7 @@
 @extends('layouts.main')
 @section('css')
 <style>
-    #hasil-pencarian-container div{
-        cursor: pointer;
-        padding: 5px 10px;
-        border-radius: 5px;
-    }
-    #hasil-pencarian-container div:hover{
-        background: linear-gradient(rgba(19, 53, 123, 0.8), rgba(19, 53, 123, 0.8));
-        color: white;
-    }
-    #hasil-pencarian-container div:hover h4{
-        color:white;
-    }
+
 </style>
 
 @endsection
@@ -103,7 +92,7 @@
                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Hasil Pencarian Tiket</h1>
                             </div>
                             <div class="modal-body">
-                                <h5> Total: <span id="hasil-total-tiket"></span> Tiket</h5>
+                                <h5>Pesan Total: <span id="hasil-total-tiket"></span> Tiket</h5>
                                 <hr>
                                 <div id="hasil-pencarian-container">
                                 </div>
@@ -173,6 +162,7 @@
             });
             $("#kelas_id").prop('disabled', true);
             if($('#pelabuhan_asal_id').val() != 0 && $('#pelabuhan_tujuan_id').val() != 0){
+                $('#spinner').addClass('show');
                 $.ajax({
                     url: "{{ route('api.jadwal', [], false) }}",
                     type: "GET",
@@ -181,6 +171,7 @@
                         'pelabuhan_tujuan_id': $('#pelabuhan_tujuan_id').val()
                     },
                     success: function (data) {
+                        $('#spinner').removeClass('show');
                         if(data.length > 0){
                             var isMoreThanToday = false;
                             data.forEach(function(value){
@@ -264,6 +255,7 @@
             });
             $("#kelas_id").prop('disabled', true);
             if($('#pelabuhan_asal_id').val() != 0 && $('#pelabuhan_tujuan_id').val() != 0){
+                $('#spinner').addClass('show');
                 $.ajax({
                     url: "{{ route('api.jadwal', [], false) }}",
                     type: "GET",
@@ -272,6 +264,7 @@
                         'pelabuhan_tujuan_id': $('#pelabuhan_tujuan_id').val()
                     },
                     success: function (data) {
+                        $('#spinner').removeClass('show');
                         if(data.length > 0){
                             var isMoreThanToday = false;
                             data.forEach(function(value){
@@ -318,6 +311,7 @@
         });
 
         $('#tanggal_keberangkatan').on('changeDate', function(e){
+            $('#spinner').addClass('show');
             $('#hasil-pencarian-container').html('');
             $('#btn-cari').attr('disabled', true);
             $("#tipe_tiket").html('').select2({
@@ -347,6 +341,7 @@
                     'tanggal_keberangkatan': tanggal
                 },
                 success: function (data) {
+                    $('#spinner').removeClass('show');
                     if(data.length > 0){
                         data_tipe_tiket = []
                         data.forEach(function(value, index){
@@ -359,21 +354,16 @@
                             } else if(value.tipe_tiket == 4){
                                 tipe_tiket_name = "Mobil";
                             }
+
                             if(data_tipe_tiket.length == 0){
                                 data_tipe_tiket.push({
                                     id: value.tipe_tiket,
                                     text: tipe_tiket_name
                                 });
-                            } else {
-                                var x = true;
-                                data_tipe_tiket.forEach(function(item){
-                                    if(item.id != value.tipe_tiket && x) {
-                                        data_tipe_tiket.push({
-                                            id: value.tipe_tiket,
-                                            text: tipe_tiket_name
-                                        });
-                                        x = false;
-                                    }
+                            } else if (!data_tipe_tiket.find(e => e.id == value.tipe_tiket)) {
+                                data_tipe_tiket.push({
+                                    id: value.tipe_tiket,
+                                    text: tipe_tiket_name
                                 });
                             }
                         });
@@ -395,6 +385,7 @@
         });
 
         $("#tipe_tiket").on('change', function(e){
+            $('#spinner').addClass('show');
             $('#hasil-pencarian-container').html('');
             $('#btn-cari').attr('disabled', true);
             $("#kelas_id").html('').select2({
@@ -417,6 +408,7 @@
                     'tipe_tiket': tiket
                 },
                 success: function (data) {
+                    $('#spinner').removeClass('show');
                     if(data.length > 0){
                         data_kelas_id = []
                         data.forEach(function(value, index){
@@ -425,16 +417,10 @@
                                     id: value.deck_id,
                                     text: value.kelas_name
                                 });
-                            } else {
-                                var x = true;
-                                data_kelas_id.forEach(function(item){
-                                    if(item.id != value.deck_id && x) {
-                                        data_kelas_id.push({
-                                            id: value.deck_id,
-                                            text: value.kelas_name
-                                        });
-                                        x = false;
-                                    }
+                            } else if(data_kelas_id.find(e => e.id == data_kelas_id)){
+                                data_kelas_id.push({
+                                    id: value.deck_id,
+                                    text: value.kelas_name
                                 });
                             }
                         });
@@ -456,6 +442,7 @@
         });
 
         $('#kelas_id').on('change', function(e){
+            $('#spinner').addClass('show');
             $('#btn-cari').attr('disabled', true);
             $('#hasil-pencarian-container').html('');
             var tanggal =  $('#tanggal_keberangkatan').val();
@@ -472,15 +459,24 @@
                     'deck_id': deck
                 },
                 success: function (data) {
+                    $('#spinner').removeClass('show');
                     if(data.length > 0){
-                        $('#hasil-total-tiket').text(data.length);
+                        $('#hasil-total-tiket').append(`
+                            <input type="number" min:1  value="1" onChange="checkAvailableTiket(this)" id="total_pesan_tiket" />
+                        `);
                         data.forEach(function(value, index){
                             $('#hasil-pencarian-container').append(`
-                                    <div class="mb-2 mt-2" onClick="getTicket(this)" data-id="${value.id}">
-                                        <h4 class="mb-0">${value.nama_kapal} (${value.kode_kapal})</h4>
-                                        <p class="mb-0">Kelas: ${value.kelas_name}</p>
-                                        <p class="mb-0">Tanggal/Jam Berangkat: ${value.tanggal_keberangkatan} ${value.jam_keberangkatan} WITA</p>
-                                        <p class="mb-0">Harga: ${value.harga}</p>
+                                    <div class="tiket mb-2 mt-2 d-flex align-items-center justify-content-between" >
+                                        <div>
+                                            <h4 class="mb-0">${value.nama_kapal} (${value.kode_kapal})</h4>
+                                            <p class="mb-0">Kelas: ${value.kelas_name}</p>
+                                            <p class="mb-0">Tanggal/Jam Berangkat: </p>
+                                            <p class="mb-0">${value.tanggal_keberangkatan} ${value.jam_keberangkatan} WITA</p>
+                                            <p class="mb-0">Harga: ${value.harga}</p>
+                                        </div>
+                                        <div id="container-btn-pesan-${value.id_jadwal}">
+                                            <div class="btn-pesan btn btn-primary text-white w-100 py-3" onClick="getTicket(this)" data-id="${value.id_jadwal}" id="btn-pesan-${value.id_jadwal}">Pesan Sekarang</div>
+                                        </div>
                                     </div>
                                     <hr>`);
                         });
@@ -489,10 +485,13 @@
                 }
             });
         });
+
         function getTicket(e){
             var id = $(e).data('id');
+            var total_tiket = $('#total_pesan_tiket').val();
             var form = $('<form action="{{route("tiket.transaksi", [], false)}}" method="post">' +
                            '<input type="hidden" name="jadwal_id" value="' + id  + '" />' +
+                           '<input type="hidden" name="jumlah_tiket" value="' + total_tiket  + '" />' +
                            '<input type="hidden" name="_token" value="{{ csrf_token() }}" />'+
                         '</form>');
             $('body').append(form);
