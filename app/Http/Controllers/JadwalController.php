@@ -112,6 +112,15 @@ class JadwalController extends Controller
                     ->where('pelabuhan_tujuan_id', $request->pelabuhan_tujuan_id);
             })->orderBy('tipe_tiket', 'asc')->get();
             if ($jadwal->count() > 0) {
+                $i = 0;
+                foreach ($jadwal as $item) {
+                    if ($item->totalTiketTransaksi() <= 0) {
+                        unset($jadwal[$i]);
+                    }
+                    $i++;
+                }
+            }
+            if ($jadwal->count() > 0) {
                 foreach ($jadwal as $item) {
                     $item->kelas_name = $item->deck->kelas;
                     $item->nama_kapal = $item->kapal->nama_kapal;
@@ -125,10 +134,11 @@ class JadwalController extends Controller
         }
     }
 
-    public function get_total_tiket(Request $request){
-        if($request->has('jadwal_id')){
+    public function get_total_tiket(Request $request)
+    {
+        if ($request->has('jadwal_id')) {
             $jadwal = Jadwal::findOrFail($request->jadwal_id);
-            $total_tiket = $jadwal->jumlah_tiket;
+            $total_tiket = $jadwal->totalTiketTransaksi();
             return response()->json($total_tiket);
         } else {
             return response()->json(['error' => 'Page Not Found'], 404);

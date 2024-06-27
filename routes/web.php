@@ -48,6 +48,12 @@ Route::group(['middleware' => 'user'], function () {
     Route::controller(TransaksiController::class)->group(function () {
         Route::get('/transaksi', 'index')->name('transaksi.index');
         Route::get('/api/transaksi/expired', 'expired')->name('api.transaksi.expired');
+        Route::post('/transaksi/bayar', 'bayar')->name('transaksi.tiket.bayar');
+        Route::get('/transaksi/cancel/{id}', 'cancel')->name('tansaksi.tiket.cancel');
+    });
+
+    Route::controller(TiketKapalController::class)->group(function(){
+        Route::get('/tiket', 'index')->name('tiket.index');
     });
 });
 

@@ -1052,16 +1052,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v11.11.0",
+            "version": "v11.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "194102876df42f9f5bb618efa55fa7e15ebf40aa"
+                "reference": "92deaa4f037ff100e36809443811301819a8cf84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/194102876df42f9f5bb618efa55fa7e15ebf40aa",
-                "reference": "194102876df42f9f5bb618efa55fa7e15ebf40aa",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/92deaa4f037ff100e36809443811301819a8cf84",
+                "reference": "92deaa4f037ff100e36809443811301819a8cf84",
                 "shasum": ""
             },
             "require": {
@@ -1253,7 +1253,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-06-18T17:40:27+00:00"
+            "time": "2024-06-27T09:04:50+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -1981,16 +1981,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "3.5.0",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "415782b7e48223342f1a616c16c45a95b15b2318"
+                "reference": "39c8ef752db6865717cc3fba63970c16f057982c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/415782b7e48223342f1a616c16c45a95b15b2318",
-                "reference": "415782b7e48223342f1a616c16c45a95b15b2318",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/39c8ef752db6865717cc3fba63970c16f057982c",
+                "reference": "39c8ef752db6865717cc3fba63970c16f057982c",
                 "shasum": ""
             },
             "require": {
@@ -2083,7 +2083,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-06-03T17:25:54+00:00"
+            "time": "2024-06-20T15:52:59+00:00"
         },
         {
             "name": "nette/schema",
@@ -6337,16 +6337,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.29.3",
+            "version": "v1.30.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "e35b3ffe1b9ea598246d7e99197ee8799f6dc2e5"
+                "reference": "e08b594052385ab9891dd86047e52da8a953c827"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/e35b3ffe1b9ea598246d7e99197ee8799f6dc2e5",
-                "reference": "e35b3ffe1b9ea598246d7e99197ee8799f6dc2e5",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/e08b594052385ab9891dd86047e52da8a953c827",
+                "reference": "e08b594052385ab9891dd86047e52da8a953c827",
                 "shasum": ""
             },
             "require": {
@@ -6396,7 +6396,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2024-06-12T16:24:41+00:00"
+            "time": "2024-06-18T17:36:56+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -7079,16 +7079,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.5.23",
+            "version": "10.5.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "12826591cc32fa0959b7e7577a90c3f527e377b2"
+                "reference": "5f124e3e3e561006047b532fd0431bf5bb6b9015"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/12826591cc32fa0959b7e7577a90c3f527e377b2",
-                "reference": "12826591cc32fa0959b7e7577a90c3f527e377b2",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/5f124e3e3e561006047b532fd0431bf5bb6b9015",
+                "reference": "5f124e3e3e561006047b532fd0431bf5bb6b9015",
                 "shasum": ""
             },
             "require": {
@@ -7160,7 +7160,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.23"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.24"
             },
             "funding": [
                 {
@@ -7176,7 +7176,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-06-20T07:29:28+00:00"
+            "time": "2024-06-20T13:09:54+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -8159,16 +8159,16 @@
         },
         {
             "name": "spatie/error-solutions",
-            "version": "1.0.0",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/error-solutions.git",
-                "reference": "202108314a6988ede156fba1b3ea80a784c1734a"
+                "reference": "55ea4117e0fde89d520883734ab9b71064c48876"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/error-solutions/zipball/202108314a6988ede156fba1b3ea80a784c1734a",
-                "reference": "202108314a6988ede156fba1b3ea80a784c1734a",
+                "url": "https://api.github.com/repos/spatie/error-solutions/zipball/55ea4117e0fde89d520883734ab9b71064c48876",
+                "reference": "55ea4117e0fde89d520883734ab9b71064c48876",
                 "shasum": ""
             },
             "require": {
@@ -8221,7 +8221,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/error-solutions/issues",
-                "source": "https://github.com/spatie/error-solutions/tree/1.0.0"
+                "source": "https://github.com/spatie/error-solutions/tree/1.0.3"
             },
             "funding": [
                 {
@@ -8229,7 +8229,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-06-12T14:49:54+00:00"
+            "time": "2024-06-27T12:22:48+00:00"
         },
         {
             "name": "spatie/flare-client-php",

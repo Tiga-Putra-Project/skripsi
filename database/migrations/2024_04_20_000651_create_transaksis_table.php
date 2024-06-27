@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->foreignId('jadwal_id')->references('id_jadwal')->on('jadwals')->onDelete('restrict')->onUpdate('cascade');
             $table->foreignId('user_id')->references('user_id')->on('users')->onDelete('restrict')->onUpdate('cascade');
             $table->dateTime('tanggal_expired');
-            $table->tinyInteger('status')->comment('[1] => Belum dibayar, [2] => Sudah dibayar, [3] => Expired');
+            $table->string('status')->comment('[1] => Belum dibayar, [2] => Sudah dibayar, [3] => Expired, [4] => Dibatalkan');
             $table->integer('jumlah_tiket');
             $table->timestamps();
         });

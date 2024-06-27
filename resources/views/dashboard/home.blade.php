@@ -167,7 +167,7 @@
                     <div class="relative card-body">
                         <div class="grid items-center grid-cols-12">
                             <div class="col-span-12 lg:col-span-8 2xl:col-span-7">
-                                <h5 class="mb-3 font-normal tracking-wide text-slate-200">Welcome StarCode Kh 🎉</h5>
+                                <h5 class="mb-3 font-normal tracking-wide text-slate-200">Welcome {{Auth::user()->fullname}}</h5>
                                 <p class="mb-5 text-slate-400">An e-commerce dashboard has just that purpose. It provides your e-commerce team with a clear overview of key financial and website KPIs at any time.</p>
                                 <button type="button" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-500/20 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-500/20 dark:ring-custom-400/20">Take a Product</button>
                             </div>

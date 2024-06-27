@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Deck;
 use App\Models\Kapal;
 use App\Models\Pelabuhan;
+use App\Models\Transaksi;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -37,7 +38,7 @@ class Jadwal extends Model
 
     public function tipeTiket()
     {
-        switch($this->tipe_tiket){
+        switch ($this->tipe_tiket) {
             case 1:
                 return 'Pejalan Kaki';
                 break;
@@ -54,5 +55,18 @@ class Jadwal extends Model
                 return 'Tidak Ada';
                 break;
         }
+    }
+
+    public function totalTiketTransaksi()
+    {
+        $tiket = Transaksi::where('jadwal_id', $this->id_jadwal)->where(function ($query) {
+            return $query->where('status', 'Sudah Dibayar')
+                ->orWhere('status', 'Belum Dibayar');
+        })->get();
+        $total_tiket = 0;
+        foreach ($tiket as $t) {
+            $total_tiket += $t->jumlah_tiket;
+        }
+        return $this->jumlah_tiket - $total_tiket;
     }
 }

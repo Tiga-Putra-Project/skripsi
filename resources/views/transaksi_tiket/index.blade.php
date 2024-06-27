@@ -22,7 +22,7 @@
                         <div class="2xl:col-span-3 2xl:col-start-10">
                             <div class="flex gap-3">
                                 <div class="relative grow">
-                                    <input type="text" class="ltr:pl-8 rtl:pr-8 search form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Search for ..." autocomplete="off" id="search_input">
+                                    <input type="text" value="{{$search}}" class="ltr:pl-8 rtl:pr-8 search form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Search for ..." autocomplete="off" id="search_input">
                                     <i data-lucide="search" class="inline-block size-4 absolute ltr:left-2.5 rtl:right-2.5 top-2.5 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-600"></i>
                                 </div>
                                 <button type="button" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20"><i class="align-baseline ltr:pr-1 rtl:pl-1 ri-download-2-line"></i> Export</button>
@@ -63,7 +63,7 @@
                                         {{ $transaksi->user->fullname }}
                                     </td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">{{ $transaksi->jumlah_tiket }}</td>
-                                    @if ($transaksi->status == 1)
+                                    @if ($transaksi->status == 'Belum Dibayar')
                                         <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">Expired : <span id="expired_time_{{$transaksi->id_transaksi}}"></span></td>
                                         <script>
                                             $(document).ready( function() {
@@ -106,23 +106,23 @@
                                                 }, 1000);
                                             });
                                         </script>
-                                    @elseif ($transaksi->status == 2)
-                                        <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 ">
-                                            Sudah Dibayar
-                                        </td>
                                     @else
-                                    <td colspan="2" class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 text-center">
-                                        Expired
-                                    </td>
+                                        <td colspan="2" class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 text-center">
+                                            {{ $transaksi->status }}
+                                        </td>
                                     @endif
-                                    @if($transaksi->status != 3)
+                                    @if($transaksi->status == "Belum Dibayar" && $transaksi->user_id == Auth::user()->id)
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 flex gap-x-2" id="action_button_{{$transaksi->id_transaksi}}">
-                                        <button type="button" class="text-white btn bg-lime-400 border-lime-400 hover:text-white hover:bg-lime-500 hover:border-lime-400 focus:text-white focus:bg-lime-500 focus:border-lime-500 focus:ring focus:ring-lime-500 active:text-white active:bg-lime-400 active:border-lime-400 active:ring active:ring-lime-400 dark:ring-custom-400/20 flex gap-x-2 justify-center items-center" style="	height: fit-content;"><i data-lucide="credit-card"></i> Bayar</button>
-                                        <button type="button" class="text-white btn bg-red-500 border-red-500 hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100 dark:ring-red-400/20 flex gap-x-2 justify-center items-center" style="	height: fit-content;"><i data-lucide="x"></i> Cancel</button>
+                                        <form method="post" action="{{route('transaksi.tiket.bayar')}}">
+                                            @csrf
+                                            <input type="hidden" name="id_transaksi" value="{{ $transaksi->id_transaksi }}">
+                                            <button type="submit" class="text-white btn bg-lime-400 border-lime-400 hover:text-white hover:bg-lime-500 hover:border-lime-400 focus:text-white focus:bg-lime-500 focus:border-lime-500 focus:ring focus:ring-lime-500 active:text-white active:bg-lime-400 active:border-lime-400 active:ring active:ring-lime-400 dark:ring-custom-400/20 flex gap-x-2 justify-center items-center" style="	height: fit-content;"><i data-lucide="credit-card"></i> Bayar</button>
+                                        </form>
+                                        <button type="button" class="text-white btn bg-red-500 border-red-500 hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100 dark:ring-red-400/20 flex gap-x-2 justify-center items-center" data-bs-toggle="modal" data-bs-target="#modalDeleteTransaksi{{$transaksi->id_transaksi}}" style="height: fit-content;"><i data-lucide="x"></i> Cancel</button>
                                     </td>
+                                    @include('transaksi_tiket.modal.cancel');
                                     @endif
                                 </tr>
-
                                 @endforeach
                                 @endif
                             </tbody>

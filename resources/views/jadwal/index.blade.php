@@ -106,7 +106,7 @@
                                         <p>{{ $jadwal->kotaAsal->tempat_pelabuhan }} <i data-lucide="move-right" class="inline"></i> {{ $jadwal->kotaTujuan->tempat_pelabuhan }}</p>
                                     </td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
-                                        Tersedia: {{ $jadwal->jumlah_tiket }}/{{ $jadwal->jumlah_tiket }}
+                                        Tersedia: {{ $jadwal->totalTiketTransaksi() }}/{{ $jadwal->jumlah_tiket }}
                                     </td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
                                         Rp. {{number_format($jadwal->harga, 0, ',', '.')}}

@@ -21,6 +21,6 @@ class Transaksi extends Model
 
     public function jadwal()
     {
-        return $this->belongsTo(Jadwal::class, 'id_jadwal', 'jadwal_id');
+        return $this->belongsTo(Jadwal::class, 'jadwal_id', 'id_jadwal');
     }
 }
