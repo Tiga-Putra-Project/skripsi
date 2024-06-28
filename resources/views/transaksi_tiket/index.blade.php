@@ -111,7 +111,7 @@
                                             {{ $transaksi->status }}
                                         </td>
                                     @endif
-                                    @if($transaksi->status == "Belum Dibayar" && $transaksi->user_id == Auth::user()->id)
+                                    @if($transaksi->status == "Belum Dibayar" && $transaksi->user_id == Auth::user()->user_id)
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 flex gap-x-2" id="action_button_{{$transaksi->id_transaksi}}">
                                         <form method="post" action="{{route('transaksi.tiket.bayar')}}">
                                             @csrf
