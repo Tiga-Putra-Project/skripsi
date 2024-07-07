@@ -35,7 +35,7 @@
                                         <label class="form-label" for="form6Example2">Last name</label>
                                       </div>
                                     </div>
-                                  </div>
+                                </div>
                             </form>
                         </div>
                     </div>

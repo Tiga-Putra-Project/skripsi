@@ -40,13 +40,7 @@
                             <div class="col-md-12">
                                 <div class="form-floating">
                                     <input type="email" class="form-control bg-white border-0" id="email" placeholder="Your Email">
-                                    <label for="email">Penumpang</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control bg-white border-0" placeholder="Special Request" id="message" style="height: 100px"></textarea>
-                                    <label for="message">Special Request</label>
+                                    <label for="email">Jumlah Penumpang</label>
                                 </div>
                             </div>
                             <div class="col-12">
