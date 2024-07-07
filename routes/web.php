@@ -23,7 +23,6 @@ Route::get('/api/kapal', [KapalController::class, 'get_data'])->name('api.kapal'
 Route::get('/api/jadwal', [JadwalController::class, 'get_data'])->name('api.jadwal');
 Route::get('/api/total-tiket', [JadwalController::class, 'get_total_tiket'])->name('api.total_tiket');
 
-
 // Guests Routes (Belum Login)
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/login', [UserController::class, 'index'])->name('login.index');
