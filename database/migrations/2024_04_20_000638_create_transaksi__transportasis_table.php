@@ -13,12 +13,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transaksi__transportasis', function (Blueprint $table) {
-            $table->id('id_transaksi_transportasi')->nullable();
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Transportasi::class);
-            $table->string('harga')->nullable();
-            $table->dateTime('tanggal_transaksi')->nullable();
+        Schema::create('transaksi_transportasis', function (Blueprint $table) {
+            $table->id('id_transaksi_transportasi');
+            $table->foreignId('user_id')->references('user_id')->on('users')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('transportasi_id')->references('id_driver')->on('transportasis')->onDelete('restrict')->onUpdate('cascade');
+            $table->string('transaksi_transportasi_unique_id')->unique()->nullable();
+            $table->text('alamat_jemput');
+            $table->text('alamat_tujuan');
+            $table->date('tanggal_keberangkatan');
+            $table->string('jam_keberangkatan');
+            $table->string('jumlah_penumpang');
+            $table->string('harga');
+            $table->string('status')->comment('[1] => Belum dibayar, [2] => Sudah dibayar, [3] => Dibatalkan, [4] => Selesai');
             $table->timestamps();
         });
     }
@@ -28,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transaksi__transportasis');
+        Schema::dropIfExists('transaksi_transportasis');
     }
 };

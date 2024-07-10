@@ -11,6 +11,7 @@ use App\Http\Controllers\TransportasiController;
 use App\Http\Controllers\Landing\TiketController;
 use App\Http\Controllers\Landing\TravelController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\Transaksi_TransportasiController;
 
 Route::get('/', function () {
     return view('homepage.landing');
@@ -22,6 +23,7 @@ Route::get('/result/show-tiket', [TiketController::class, 'show'])->name('tiket.
 Route::get('/api/kapal', [KapalController::class, 'get_data'])->name('api.kapal');
 Route::get('/api/jadwal', [JadwalController::class, 'get_data'])->name('api.jadwal');
 Route::get('/api/total-tiket', [JadwalController::class, 'get_total_tiket'])->name('api.total_tiket');
+Route::get('/api/transportasi', [TransportasiController::class, 'get_data'])->name('api.transportasi');
 
 // Guests Routes (Belum Login)
 Route::group(['middleware' => 'guest'], function () {
@@ -49,6 +51,14 @@ Route::group(['middleware' => 'user'], function () {
         Route::get('/api/transaksi/expired', 'expired')->name('api.transaksi.expired');
         Route::post('/transaksi/bayar', 'bayar')->name('transaksi.tiket.bayar');
         Route::get('/transaksi/cancel/{id}', 'cancel')->name('tansaksi.tiket.cancel');
+    });
+
+    Route::controller(Transaksi_TransportasiController::class)->group(function () {
+        Route::post('/transaksi-transportasi', 'transaksi')->name('transportasi.transaksi');
+        Route::get('/transaksi-transportasi', 'index')->name('transportasi.index');
+        Route::post('/transaksi-transportasi/bayar', 'bayar')->name('transportasi.bayar');
+        Route::post('/transaksi-transportasi/selesai', 'selesai')->name('transportasi.selesai');
+        Route::get('/transaksi-transportasi/cancel/{id}', 'cancel')->name('transportasi.cancel');
     });
 
     Route::controller(TiketKapalController::class)->group(function(){

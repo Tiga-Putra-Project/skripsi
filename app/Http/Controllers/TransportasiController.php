@@ -74,4 +74,16 @@ class TransportasiController extends Controller
         toastr()->success('Data Transportasi Berhasil Diedit');
         return redirect()->route('admin.transportasi.index');
     }
+
+    public function get_data(Request $request){
+        if($request->has('kota_id')){
+            $transportasis = Transportasi::where('kota_id', $request->kota_id)->where('kapasitas_penumpang','>=', $request->jumlah_penumpang)->get();
+            foreach($transportasis as $transportasi){
+                $transportasi->nama_lengkap = $transportasi->user->fullname;
+            }
+            return response()->json($transportasis);
+        } else {
+            return abort(404);
+        }
+    }
 }
